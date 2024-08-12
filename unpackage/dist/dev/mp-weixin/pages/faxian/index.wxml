@@ -1,0 +1,1 @@
+<view> 发现 </view><tabbar wx:if="{{a}}" u-i="4fbe0e56-0" bind:__l="__l" u-p="{{a}}"></tabbar>

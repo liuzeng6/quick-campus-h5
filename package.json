@@ -1,0 +1,19 @@
+{
+    "id": "ua-tabbar",
+    "name": "tabbar自定义底部标签栏菜单",
+    "version": "v1.1.1",
+    "description": "uniapp多端自定义底部tabbar组件。支持自定义背景、激活颜色、是否固定tabbar，可配置tab选项实现类似咸鱼凸起按钮效果。",
+    "keywords": [
+        "ua-tabbar",
+        "tabbar",
+        "底部tab",
+        "仿咸鱼凸起导航"
+    ],
+    "displayName": "tabbar自定义底部标签栏菜单",
+    "dcloudext": {
+        "category": [
+            "前端组件",
+            "通用组件"
+        ]
+    }
+}

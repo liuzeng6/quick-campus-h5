@@ -1,0 +1,79 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		},
+		{
+			"path" : "pages/user/index",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/faxian/index",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/message/index",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "components/tabbar/tabbar",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		}
+	],
+	// "tabBar": {
+	// 	"color": "#cdcfe3",
+	// 	"selectedColor": "#5d80e8",
+	// 	"list": [
+	// 		{
+	// 			"pagePath": "pages/index/index",
+	// 			"iconPath": "static/tabbar/shcool.png",
+	// 			"selectedIconPath": "static/tabbar/shcool_active.png",
+	// 			"text": "校园"
+	// 		},
+	// 		{
+	// 			"pagePath": "pages/faxian/index",
+	// 			"iconPath": "static/tabbar/faxian.png",
+	// 			"selectedIconPath": "static/tabbar/faxian_active.png",
+	// 			"text": "发现"
+	// 		},
+	// 		{
+	// 			"pagePath": "pages/message/index",
+	// 			"iconPath": "static/tabbar/msg-active.png",
+	// 			"selectedIconPath": "static/tabbar/msg.png",
+	// 			"text": "消息"
+	// 		},
+	// 		{
+	// 			"pagePath": "pages/user/index",
+	// 			"iconPath": "static/tabbar/user.png",
+	// 			"selectedIconPath": "static/tabbar/user-active.png",
+	// 			"text": "我的"
+	// 		}
+	// 	]
+	// },
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {}
+}

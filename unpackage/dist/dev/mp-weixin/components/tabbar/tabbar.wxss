@@ -1,0 +1,40 @@
+
+.tabbar{
+		width: 100%;
+		border-top: 1px solid #ccc;
+		height: 140rpx;
+		position: fixed;
+		bottom: 0rpx;
+		background-color: #fff;
+}
+.bar-wrap{
+		display: flex;
+		justify-content: space-around;
+}
+.item{
+		width: 100rpx;
+		text-align: center;
+}
+.item-img{
+		margin: 20rpx auto 0;
+		width: 50rpx;
+}
+.item-img image{
+		width: 100%;
+		height: 100%;
+}
+.item-text-active {
+		color: #5d80e8;
+		font-size: 28rpx;
+		margin-top: -10rpx;
+}
+.item-text {
+		color: #cdcfe3;
+		font-size: 28rpx;
+		margin-top: -10rpx;
+}
+.fabu {
+		width: 80rpx;
+		height: 80rpx;
+		margin-top: -5rpx;
+}

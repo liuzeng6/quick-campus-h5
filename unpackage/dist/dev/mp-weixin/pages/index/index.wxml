@@ -1,0 +1,1 @@
+<tabbar wx:if="{{a}}" u-i="547a8e6c-0" bind:__l="__l" u-p="{{a}}"></tabbar> 首页 

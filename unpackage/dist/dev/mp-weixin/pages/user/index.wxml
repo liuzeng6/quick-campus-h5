@@ -1,0 +1,1 @@
+<view> asd </view><tabbar wx:if="{{a}}" u-i="0b3a4f72-0" bind:__l="__l" u-p="{{a}}"></tabbar>

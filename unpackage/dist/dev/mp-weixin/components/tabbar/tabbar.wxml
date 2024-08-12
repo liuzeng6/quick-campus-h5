@@ -1,0 +1,1 @@
+<view class="tabbar"><view class="bar-wrap"><block wx:for="{{a}}" wx:for-item="item" wx:key="f"><view class="item" bindtap="{{item.e}}"><view class="{{item.b}}"><image src="{{item.a}}" mode="widthFix"></image></view><view wx:if="{{item.c}}" class="item-text-active">{{item.d}}</view></view></block></view></view>
