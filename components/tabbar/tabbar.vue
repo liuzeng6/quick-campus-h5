@@ -33,8 +33,8 @@
 	const checkedBar = index => {
 		// checked.value = index
 	
-		uni.navigateTo({
-			url: barList.value[index].href + `?index=${index}`
+		uni.switchTab({
+			url: barList.value[index].href
 		})
 	}
 </script>
@@ -43,7 +43,7 @@
 	.tabbar{
 		width: 100%;
 		border-top: 1px solid #ccc;
-		height: 140rpx;
+		height: 120rpx;
 		position: fixed;
 		bottom: 0rpx;
 		background-color: #fff;
@@ -77,6 +77,6 @@
 	.fabu {
 		width: 80rpx;
 		height: 80rpx;
-		margin-top: -5rpx;
+		margin-top: -9rpx;
 	}
 </style>
