@@ -7,6 +7,7 @@ if (!Math) {
   "./pages/faxian/index.js";
   "./pages/message/index.js";
   "./components/tabbar/tabbar.js";
+  "./pages/search/index.js";
 }
 const _sfc_main = {
   __name: "App",
@@ -18,7 +19,7 @@ const _sfc_main = {
     };
   }
 };
-const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/xueXi/Uniapp/school/App.vue"]]);
+const App = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/xueXi/Uniapp/quick-campus-h5/App.vue"]]);
 function createApp() {
   const app = common_vendor.createSSRApp(App);
   return {

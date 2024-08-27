@@ -16,10 +16,10 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "ignoreUploadUnusedFiles": true
+    "ignoreUploadUnusedFiles": false
   },
   "compileType": "miniprogram",
-  "libVersion": "3.5.2",
+  "libVersion": "",
   "appid": "wx984c9308fc8d7226",
   "projectname": "school",
   "condition": {},

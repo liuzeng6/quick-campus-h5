@@ -4,13 +4,37 @@
     "pages/user/index",
     "pages/faxian/index",
     "pages/message/index",
-    "components/tabbar/tabbar"
+    "components/tabbar/tabbar",
+    "pages/search/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "backgroundColor": "#F3F3F3"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#cdcfe3",
+    "selectedColor": "#5d80e8",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": ""
+      },
+      {
+        "pagePath": "pages/faxian/index",
+        "text": ""
+      },
+      {
+        "pagePath": "pages/message/index",
+        "text": ""
+      },
+      {
+        "pagePath": "pages/user/index",
+        "text": ""
+      }
+    ]
   },
   "usingComponents": {}
 }

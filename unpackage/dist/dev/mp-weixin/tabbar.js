@@ -17,8 +17,8 @@ const _sfc_main = {
       { text: "我的", src: "../../static/tabbar/user.png", active: "../../static/tabbar/user-active.png", href: "/pages/user/index" }
     ]);
     const checkedBar = (index) => {
-      common_vendor.index.navigateTo({
-        url: barList.value[index].href + `?index=${index}`
+      common_vendor.index.switchTab({
+        url: barList.value[index].href
       });
     };
     return (_ctx, _cache) => {
@@ -39,5 +39,5 @@ const _sfc_main = {
     };
   }
 };
-const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/xueXi/Uniapp/school/components/tabbar/tabbar.vue"]]);
+const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__file", "D:/xueXi/Uniapp/quick-campus-h5/components/tabbar/tabbar.vue"]]);
 exports.MiniProgramPage = MiniProgramPage;

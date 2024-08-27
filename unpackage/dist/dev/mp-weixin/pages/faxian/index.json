@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "",
+  "navigationBarTitleText": "发现&搜索",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "tabbar": "../../components/tabbar/tabbar"

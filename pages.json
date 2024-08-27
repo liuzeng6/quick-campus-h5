@@ -3,7 +3,8 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "uni-app",
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -18,7 +19,7 @@
 			"path" : "pages/faxian/index",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",
+				"navigationBarTitleText" : "发现&搜索",
 				"enablePullDownRefresh" : false
 			}
 		},
@@ -32,6 +33,14 @@
 		},
 		{
 			"path" : "components/tabbar/tabbar",
+			"style" : 
+			{
+				"navigationBarTitleText" : "",
+				"enablePullDownRefresh" : false
+			}
+		},
+		{
+			"path" : "pages/search/index",
 			"style" : 
 			{
 				"navigationBarTitleText" : "",
@@ -75,7 +84,7 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F3F3F3"
 	},
 	"uniIdRouter": {}
 }
