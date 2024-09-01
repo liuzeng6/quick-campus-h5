@@ -1,1 +1,1 @@
-<view> 消息 </view><tabbar wx:if="{{a}}" u-i="44fcaec4-0" bind:__l="__l" u-p="{{a}}"></tabbar>
+<view> 消息 </view><tabbar wx:if="{{a}}" u-i="1d655eac-0" bind:__l="__l" u-p="{{a}}"></tabbar>

@@ -1,5 +1,6 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const common_assets = require("../../common/assets.js");
 const _sfc_main = {
   __name: "navbar",
   props: {
@@ -9,7 +10,8 @@ const _sfc_main = {
     }
   },
   emits: ["getStatusHeight"],
-  setup(__props, { emit }) {
+  setup(__props, { emit: __emit }) {
+    const emit = __emit;
     const statusHeight = common_vendor.ref(0);
     const navHeight = common_vendor.ref(0);
     const menu = common_vendor.reactive(common_vendor.index.getMenuButtonBoundingClientRect());
@@ -37,11 +39,12 @@ const _sfc_main = {
         a: common_vendor.s("height:" + statusHeight.value + "rpx;background-color:#f3f3f3"),
         b: __props.isHome
       }, __props.isHome ? {
-        c: common_vendor.s("height:" + menu.height * 2 + "rpx;line-height:" + lineHeight.value + "rpx;margin-top:" + (menu.top * 2 - statusHeight.value) + "rpx;margin-left: 32rpx; margin-right:" + (menu.width * 2 + 24) + "rpx;background-color:#f4f4f4; border-radius: 200rpx; text-align:center;width:260rpx"),
-        d: common_vendor.s("height:" + height.value + "rpx;line-height:" + height.value + "rpx;padding-left:20rpx;background-color:#f3f3f3")
+        c: common_assets._imports_0$1,
+        d: common_vendor.s("height:" + menu.height * 2 + "rpx;line-height:" + lineHeight.value + "rpx;margin-top:" + (menu.top * 2 - statusHeight.value) + "rpx;margin-left: 32rpx; margin-right:" + (menu.width * 2 + 24) + "rpx;background-color:#f4f4f4; border-radius: 200rpx; text-align:center;width:260rpx"),
+        e: common_vendor.s("height:" + height.value + "rpx;line-height:" + height.value + "rpx;padding-left:20rpx;background-color:#f3f3f3")
       } : {});
     };
   }
 };
-const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-eaf4c2e5"], ["__file", "D:/xueXi/Uniapp/quick-campus-h5/components/navbar/navbar.vue"]]);
+const Component = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["__scopeId", "data-v-eaf4c2e5"]]);
 wx.createComponent(Component);

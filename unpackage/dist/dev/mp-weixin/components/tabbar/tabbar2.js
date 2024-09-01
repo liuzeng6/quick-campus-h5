@@ -1,4 +1,3 @@
 "use strict";
 const tabbar = require("../../tabbar.js");
-require("../../common/vendor.js");
-wx.createPage(tabbar.MiniProgramPage);
+wx.createPage(tabbar._sfc_main);

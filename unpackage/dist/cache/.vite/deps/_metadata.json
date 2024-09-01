@@ -1,0 +1,37 @@
+{
+  "hash": "0765f1c2",
+  "configHash": "1e9b8622",
+  "lockfileHash": "98268da3",
+  "browserHash": "98f8f6ff",
+  "optimized": {
+    "pinia-plugin-persistedstate": {
+      "src": "../../../../../node_modules/pinia-plugin-persistedstate/dist/index.js",
+      "file": "pinia-plugin-persistedstate.js",
+      "fileHash": "157ba007",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../../../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "fa6a9e06",
+      "needsInterop": true
+    },
+    "axios-miniprogram-adapter": {
+      "src": "../../../../../node_modules/axios-miniprogram-adapter/dist/index.esm.js",
+      "file": "axios-miniprogram-adapter.js",
+      "fileHash": "eb29b216",
+      "needsInterop": false
+    },
+    "react": {
+      "src": "../../../../../../../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "17dc39fc",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-LQ2VYIYD": {
+      "file": "chunk-LQ2VYIYD.js"
+    }
+  }
+}
