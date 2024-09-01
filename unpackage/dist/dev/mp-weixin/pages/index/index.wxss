@@ -32,12 +32,24 @@
 	flex: 1;
 }
 .swiper {
-	height: 40rpx;
+	height: 62rpx;
 	width: 100%;
 }
-.swiper-item{
+.swiper-item {
 	height: 100%;
 	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 10rpx;
+}
+.swiper-item .hot-title {
+	font-size: 26rpx;
+}
+.top3{
+	color: #fff;
+	background-color: red;
+	padding: 4rpx 8rpx;
+	font-weight: bold;
 }
 .card-title {
 	display: flex;

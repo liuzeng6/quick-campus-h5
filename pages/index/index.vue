@@ -30,17 +30,11 @@
 			</view>
 			<view class="hot-swiper">
 				<swiper class="swiper" :indicator-dots='false' autoplay :interval='5000' circular :vertical='true' :duration='800'>
-					<swiper-item>
-						<view class="swiper-itemd">1111111111</view>
-					</swiper-item>
-					<swiper-item>
-						<view class="swiper-item">222222222</view>
-					</swiper-item>
-					<swiper-item>
-						<view class="swiper-item">33333333</view>
-					</swiper-item>
-					<swiper-item>
-						<view class="swiper-item">444444444</view>
+					<swiper-item v-for="item in topicList" :key="item.id">
+						<view class="swiper-item">
+							<view :class="item.id <= 3 ? 'top3' : ''">{{ item.id }}</view>
+							<view class="hot-title">{{ item.title }}</view>
+						</view>
 					</swiper-item>
 				</swiper>
 			</view>
@@ -90,13 +84,23 @@
 	import {  nextTick, onMounted, ref} from 'vue'
 	import { onLoad, onLaunch } from '@dcloudio/uni-app'
 	import tabbar from '@/components/tabbar/tabbar.vue'
+	import { getTopics } from '../../api/index.js'
 	
 	let barHeight = ref(0)
+	let topicList = ref([])
 	
+	onMounted(() => {
+		getHotTopics()
+	})
 	
 	// 获取navbar高度
 	const getStatusHeight= navBarHeight => {
 		barHeight.value = navBarHeight
+	}
+	const getHotTopics = () => {
+		getTopics().then(res => {
+			topicList.value = res.data.data
+		})
 	}
 </script>
 
