@@ -1,0 +1,37 @@
+{
+  "hash": "a2d4a680",
+  "configHash": "15d66ba7",
+  "lockfileHash": "61aab087",
+  "browserHash": "d4a43c8b",
+  "optimized": {
+    "pinia-plugin-persistedstate": {
+      "src": "../../../../../node_modules/pinia-plugin-persistedstate/dist/index.js",
+      "file": "pinia-plugin-persistedstate.js",
+      "fileHash": "8fd8f896",
+      "needsInterop": false
+    },
+    "dayjs/esm/index": {
+      "src": "../../../../../node_modules/dayjs/esm/index.js",
+      "file": "dayjs_esm_index.js",
+      "fileHash": "2691dabb",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../../../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "78b51554",
+      "needsInterop": true
+    },
+    "axios-miniprogram-adapter": {
+      "src": "../../../../../node_modules/axios-miniprogram-adapter/dist/index.esm.js",
+      "file": "axios-miniprogram-adapter.js",
+      "fileHash": "8caca239",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-LQ2VYIYD": {
+      "file": "chunk-LQ2VYIYD.js"
+    }
+  }
+}
