@@ -1,9 +1,10 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
-const common_assets = require("../../common/assets.js");
 if (!Array) {
+  const _component_up_icon = common_vendor.resolveComponent("up-icon");
+  const _component_uni_icons = common_vendor.resolveComponent("uni-icons");
   const _easycom_tabbar2 = common_vendor.resolveComponent("tabbar");
-  _easycom_tabbar2();
+  (_component_up_icon + _component_uni_icons + _easycom_tabbar2)();
 }
 const _easycom_tabbar = () => "../../components/tabbar/tabbar2.js";
 if (!Math) {
@@ -12,6 +13,17 @@ if (!Math) {
 const _sfc_main = {
   __name: "index",
   setup(__props) {
+    function debounce(func, wait) {
+      let timeout;
+      return function() {
+        let context = this;
+        let args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+          func.apply(context, args);
+        }, wait);
+      };
+    }
     let hotList = common_vendor.reactive([
       {
         "id": 1,
@@ -74,24 +86,76 @@ const _sfc_main = {
         "score": 6789
       }
     ]);
+    let searchHistory = common_vendor.reactive(["真的累", "真的累毁了", "真的累", "真的累毁了", "真的累", "真的累毁了真的累毁了真的累毁了真的累毁了真的累毁了", "真的"]);
     function handleCLick(id) {
       console.log(id);
     }
-    function clear(id) {
-      if (id) {
-        console.log(`清除${id}`);
+    function clear(val) {
+      if (val) {
+        let index = searchHistory.findIndex((el) => el == val);
+        if (index != -1) {
+          searchHistory.splice(index, 1);
+        }
       } else {
-        console.log("需要清除全部");
+        common_vendor.index.showModal({
+          title: "提示",
+          content: "是否要清空搜索记录？",
+          success: function(res) {
+            if (res.confirm) {
+              console.log("用户点击确定");
+            }
+          }
+        });
       }
     }
+    let search = debounce(() => {
+      console.log(q);
+    }, 500);
     let q = common_vendor.ref("");
     return (_ctx, _cache) => {
-      return {
-        a: common_assets._imports_0$1,
-        b: common_vendor.unref(q),
-        c: common_vendor.o(($event) => common_vendor.isRef(q) ? q.value = $event.detail.value : q = $event.detail.value),
-        d: common_vendor.o(($event) => clear()),
-        e: common_vendor.f(common_vendor.unref(hotList), (item, index, i0) => {
+      return common_vendor.e({
+        a: common_vendor.p({
+          name: "search",
+          size: "40rpx"
+        }),
+        b: common_vendor.o([($event) => common_vendor.isRef(q) ? q.value = $event.detail.value : q = $event.detail.value, ($event) => common_vendor.unref(search)()]),
+        c: common_vendor.unref(q),
+        d: common_vendor.unref(q)
+      }, common_vendor.unref(q) ? {
+        e: common_vendor.o(($event) => _ctx.close()),
+        f: common_vendor.p({
+          type: "close",
+          size: "44rpx",
+          color: "rgb(147, 146, 153)"
+        })
+      } : {}, {
+        g: common_vendor.p({
+          name: "trash",
+          size: "38rpx"
+        }),
+        h: common_vendor.o(($event) => clear()),
+        i: !common_vendor.unref(searchHistory).length
+      }, !common_vendor.unref(searchHistory).length ? {} : {
+        j: common_vendor.f(common_vendor.unref(searchHistory), (item, index, i0) => {
+          return {
+            a: common_vendor.t(item),
+            b: common_vendor.o(($event) => clear(item), item),
+            c: "b644af29-3-" + i0,
+            d: item
+          };
+        }),
+        k: common_vendor.p({
+          type: "closeempty",
+          size: "34rpx",
+          color: "#929292"
+        })
+      }, {
+        l: common_vendor.p({
+          type: "fire-filled",
+          size: "36rpx",
+          color: "#FF2545"
+        }),
+        m: common_vendor.f(common_vendor.unref(hotList), (item, index, i0) => {
           return {
             a: common_vendor.t(index + 1),
             b: common_vendor.n(index <= 2 ? `color${index}` : "index"),
@@ -101,10 +165,10 @@ const _sfc_main = {
             f: common_vendor.o(($event) => handleCLick(item.id), item.id)
           };
         }),
-        f: common_vendor.p({
+        n: common_vendor.p({
           checkedIndex: "1"
         })
-      };
+      });
     };
   }
 };

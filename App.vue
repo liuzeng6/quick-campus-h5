@@ -1,6 +1,4 @@
-<template>
-
-</template>
+<template></template>
 <script setup>
 import { onLaunch } from '@dcloudio/uni-app'
 

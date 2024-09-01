@@ -1,12 +1,12 @@
 <template>
-	<scroll-view style="height: 100vh;" :scroll-y="true">
+	<scroll-view :scroll-y="true">
 		<view id="page">
 			<view class="header">
 				<view class="search">
-					<view class="icon" style="width: 36rpx;height: 36rpx;margin: 0rpx 25rpx; margin-top: 10rpx;">
-						<image style="width: 100%;height: 100%;" src="../../static/navbar/search.png"></image>
-					</view>
-					<input type="text" placeholder="搜索帖子和文章" v-model="q" class="input">
+					<up-icon name="search" size="40rpx" class="search-icon"></up-icon>
+					<input @input="search()" type="text" placeholder="搜索帖子和文章" v-model="q" class="input">
+					<uni-icons v-if="q" type="close" size="44rpx" class="close" color="rgb(147, 146, 153)"
+						@click="close()"></uni-icons>
 				</view>
 				<view class="history-title">
 					<view class="boldface">
@@ -16,20 +16,27 @@
 
 					</view>
 					<view class="clear" @click="clear()">
-						清空
+						<up-icon name="trash" size="38rpx"></up-icon>
+						<view> 清空</view>
 					</view>
 				</view>
-				<view style="text-align: center;color: #999;margin-top: 15rpx;">
+				<view v-if="!searchHistory.length" class="blank">
 					暂无搜索记录
+				</view>
+				<view v-else class="search-history">
+					<view class="item" v-for="(item, index) in searchHistory" :key="item">
+						<view>{{ item }}</view>
+						<uni-icons type="closeempty" size="34rpx" color="#929292" style="margin: 0rpx 5rpx;"
+							@click="clear(item)"></uni-icons>
+					</view>
 				</view>
 			</view>
 		</view>
 		<view class="popular">
 			<view class="title">
-				<view>
-					<image style="width: 100%;height: 100%;"></image>
+				<uni-icons type="fire-filled" size="36rpx" color="#FF2545"></uni-icons>
+				<view style="font-style: italic;font-size: 34rpx;font-weight: 600;margin: 0rpx 16rpx 0rpx 12rpx">热门帖子
 				</view>
-				<view style="font-style: italic;font-size: 34rpx;font-weight: 600;margin: 0rpx 15rpx;">热门帖子</view>
 				<view style="color: #939299;font-style: italic;font-size: 26rpx;margin-top: 5rpx;">大家都在看</view>
 			</view>
 			<view class="list">
@@ -49,6 +56,20 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+function debounce(func, wait) {
+	let timeout;
+
+	return function () {
+		let context = this; // 保存this指向
+		let args = arguments; // 拿到event对象
+
+		clearTimeout(timeout)
+		timeout = setTimeout(function () {
+			func.apply(context, args)
+		}, wait);
+	}
+}
+
 let hotList = reactive([
 	{
 		"id": 1,
@@ -111,107 +132,39 @@ let hotList = reactive([
 		"score": 6789
 	},
 ]);
+
+let searchHistory = reactive(["真的累", "真的累毁了", "真的累", "真的累毁了", "真的累", "真的累毁了真的累毁了真的累毁了真的累毁了真的累毁了", "真的"]);
 function handleCLick(id) {
 	console.log(id);
 }
-function clear(id) {
-	if (id) {
-		console.log(`清除${id}`);
+function clear(val) {
+	if (val) {
+		let index = searchHistory.findIndex(el => el == val);
+		if (index != -1) {
+			searchHistory.splice(index, 1);
+		}
 	} else {
-		console.log("需要清除全部");
+		uni.showModal({
+			title: '提示',
+			content: '是否要清空搜索记录？',
+			success: function (res) {
+				if (res.confirm) {
+					console.log('用户点击确定');
+				}
+			}
+		});
 	}
-}
+};
+// function search() {
+// 	console.log('a');
+// 	console.log(q);
+// }
+let search = debounce(() => {
+	console.log(q);
+}, 500)
 let q = ref("");
 </script>
 
 <style scoped>
-#page {
-	background-color: #FFFFFF;
-}
-
-.header {
-	height: 210rpx;
-	background-color: #FFFFFF;
-}
-
-.header .search {
-	display: flex;
-	border-radius: 10rpx;
-	margin: 0rpx 30rpx;
-	height: 66rpx;
-	line-height: 66rpx;
-	background-color: #F3F3F3;
-}
-
-.header .input {
-	line-height: 66rpx;
-	height: 66rpx;
-}
-
-.header .history-title {
-	display: flex;
-	margin: 0rpx 30rpx;
-	margin-top: 25rpx;
-}
-
-.header .history-title .space {
-	flex: 1;
-}
-
-.header .history-title .boldface {
-	font-weight: 600;
-	font-size: 32rpx;
-}
-
-.header .history-title .clear {
-	color: #9A9A9A;
-}
-
-
-.popular {
-	background-color: #FFFFFF;
-	margin: 0rpx;
-	margin-top: 15rpx;
-	margin-bottom: 50rpx;
-}
-
-.popular .title {
-	display: flex;
-	margin: 0rpx 30rpx;
-	box-sizing: border-box;
-	padding-top: 35rpx;
-}
-
-.popular .list .item {
-	display: flex;
-	margin: 0rpx 30rpx;
-	box-sizing: border-box;
-	padding: 35rpx 0px;
-	border-bottom: 1px solid #F6F6F6;
-}
-
-.popular .list .item .index {
-	color: #908F95;
-}
-
-.popular .list .item .color0 {
-	color: #CB5B54;
-}
-
-.popular .list .item .color1 {
-	color: #E58439;
-}
-
-.popular .list .item .color2 {
-	color: #D3BA89;
-}
-
-.popular .list .item .content {
-	flex: 1;
-	margin-left: 25rpx;
-}
-
-.popular .list .item .space {
-	flex: 1;
-}
+@import url("./index.css");
 </style>
