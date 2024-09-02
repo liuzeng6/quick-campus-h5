@@ -4631,23 +4631,6 @@ function normalizePropsOrEmits(props) {
     {}
   ) : props;
 }
-function withAsyncContext(getAwaitable) {
-  const ctx = getCurrentInstance();
-  if (!ctx) {
-    warn$1(
-      `withAsyncContext called without active current instance. This is likely a bug.`
-    );
-  }
-  let awaitable = getAwaitable();
-  unsetCurrentInstance();
-  if (isPromise(awaitable)) {
-    awaitable = awaitable.catch((e2) => {
-      setCurrentInstance(ctx);
-      throw e2;
-    });
-  }
-  return [awaitable, () => setCurrentInstance(ctx)];
-}
 function createDuplicateChecker() {
   const cache = /* @__PURE__ */ Object.create(null);
   return (type, key) => {
@@ -10138,32 +10121,6 @@ function mpAdapter(config, _a) {
     requestTask = request2(transformRequestOption(transformConfig(mpRequestOption)));
   });
 }
-/*!
-  * vue-router v4.3.0
-  * (c) 2024 Eduardo San Martin Morote
-  * @license MIT
-  */
-var NavigationType;
-(function(NavigationType2) {
-  NavigationType2["pop"] = "pop";
-  NavigationType2["push"] = "push";
-})(NavigationType || (NavigationType = {}));
-var NavigationDirection;
-(function(NavigationDirection2) {
-  NavigationDirection2["back"] = "back";
-  NavigationDirection2["forward"] = "forward";
-  NavigationDirection2["unknown"] = "";
-})(NavigationDirection || (NavigationDirection = {}));
-var NavigationFailureType;
-(function(NavigationFailureType2) {
-  NavigationFailureType2[NavigationFailureType2["aborted"] = 4] = "aborted";
-  NavigationFailureType2[NavigationFailureType2["cancelled"] = 8] = "cancelled";
-  NavigationFailureType2[NavigationFailureType2["duplicated"] = 16] = "duplicated";
-})(NavigationFailureType || (NavigationFailureType = {}));
-const routeLocationKey = Symbol("route location");
-function useRoute() {
-  return inject(routeLocationKey);
-}
 exports._export_sfc = _export_sfc;
 exports.axios = axios$1;
 exports.createPinia = createPinia;
@@ -10186,5 +10143,3 @@ exports.s = s;
 exports.src_default = src_default;
 exports.t = t;
 exports.unref = unref;
-exports.useRoute = useRoute;
-exports.withAsyncContext = withAsyncContext;

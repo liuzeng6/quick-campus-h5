@@ -14,7 +14,9 @@ const _sfc_main = {
     const emit = __emit;
     const statusHeight = common_vendor.ref(0);
     const navHeight = common_vendor.ref(0);
-    const menu = common_vendor.reactive(common_vendor.index.getMenuButtonBoundingClientRect());
+    const menuData = common_vendor.index.getMenuButtonBoundingClientRect && common_vendor.index.getMenuButtonBoundingClientRect() || { width: 87, height: 32, left: 281, top: 24, right: 368 };
+    const menu = common_vendor.reactive(menuData);
+    console.log(menu);
     const lineHeight = common_vendor.ref(0);
     const height = common_vendor.ref(0);
     common_vendor.onMounted(() => {

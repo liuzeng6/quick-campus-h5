@@ -1,27 +1,27 @@
 
 .nav.data-v-eaf4c2e5 {
-		position: fixed;
-		top: 0;
-		left: 0;
-		overflow: hidden;
-		z-index: 99;
-		width: 100%;
-		background-color: #f3f3f3;
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	z-index: 99;
+	width: 100%;
+	background-color: #f3f3f3;
 }
 .nav-head.data-v-eaf4c2e5 {
-		display: flex;
-		/* align-items: center; */
-		background-color: #fff;
+	display: flex;
+	/* align-items: center; */
+	background-color: #fff;
 }
 .school-name.data-v-eaf4c2e5 {
-		font-size: 34rpx;
-		font-weight: 700;
+	font-size: 34rpx;
+	font-weight: 700;
 }
 .search.data-v-eaf4c2e5 {
-		color: #b0b0b0;
+	color: #b0b0b0;
 }
 .nav-head image.data-v-eaf4c2e5 {
-		width: 30rpx; 
-		height: 30rpx;
-		margin-right: 20rpx;
+	width: 30rpx;
+	height: 30rpx;
+	margin-right: 20rpx;
 }
