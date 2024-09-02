@@ -77,6 +77,9 @@
 	.fabu {
 		width: 80rpx;
 		height: 80rpx;
-		margin-top: -9rpx;
+		margin-top: -30rpx;
+		padding: 20rpx;
+		border-radius: 50%;
+		background-color: #fff;
 	}
 </style>
