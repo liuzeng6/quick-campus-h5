@@ -32,7 +32,7 @@
     margin-right: 20rpx;
     line-height: 60rpx;
     /* max-width: 100%; */
-    overflow:hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 .header .search .search-icon.data-v-b644af29 {
@@ -66,10 +66,12 @@
     color: #9A9A9A;
     display: flex;
 }
-.header .history-title .blank.data-v-b644af29 {
+.header .blank.data-v-b644af29 {
     text-align: center;
     color: #999;
-    margin-top: 15rpx;
+    box-sizing: border-box;
+    padding: 20rpx 30rpx;
+    margin-top: -5rpx;
 }
 .popular.data-v-b644af29 {
     background-color: #FFFFFF;

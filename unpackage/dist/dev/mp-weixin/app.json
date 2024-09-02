@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/user/index",
+    "pages/details/index",
     "pages/faxian/index",
     "pages/message/index",
     "components/tabbar/tabbar",

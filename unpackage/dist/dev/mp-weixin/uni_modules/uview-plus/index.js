@@ -18,7 +18,7 @@ const http = new uni_modules_uviewPlus_libs_luchRequest_core_Request.Request();
 let themeType = ["primary", "success", "error", "warning", "info"];
 function setConfig(configs) {
   uni_modules_uviewPlus_libs_function_index.index.shallowMerge(uni_modules_uviewPlus_libs_config_config.config, configs.config || {});
-  uni_modules_uviewPlus_libs_function_index.index.shallowMerge(uni_modules_uviewPlus_libs_config_props.props, configs.props || {});
+  uni_modules_uviewPlus_libs_function_index.index.shallowMerge(uni_modules_uviewPlus_libs_config_props.defProps, configs.props || {});
   uni_modules_uviewPlus_libs_function_index.index.shallowMerge(uni_modules_uviewPlus_libs_config_color.color, configs.color || {});
   uni_modules_uviewPlus_libs_function_index.index.shallowMerge(uni_modules_uviewPlus_libs_config_zIndex.zIndex, configs.zIndex || {});
 }
@@ -41,7 +41,7 @@ const $u = {
   throttle: uni_modules_uviewPlus_libs_function_throttle.throttle,
   mixin: uni_modules_uviewPlus_libs_mixin_mixin.mixin,
   mpMixin: uni_modules_uviewPlus_libs_mixin_mpMixin.mpMixin,
-  props: uni_modules_uviewPlus_libs_config_props.props,
+  props: uni_modules_uviewPlus_libs_config_props.defProps,
   ...uni_modules_uviewPlus_libs_function_index.index,
   color: uni_modules_uviewPlus_libs_config_color.color,
   platform: uni_modules_uviewPlus_libs_function_platform.platform

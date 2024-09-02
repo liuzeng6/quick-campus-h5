@@ -36,7 +36,7 @@
     margin-right: 20rpx;
     line-height: 60rpx;
     /* max-width: 100%; */
-    overflow:hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
@@ -78,10 +78,12 @@
     display: flex;
 }
 
-.header .history-title .blank {
+.header .blank {
     text-align: center;
     color: #999;
-    margin-top: 15rpx;
+    box-sizing: border-box;
+    padding: 20rpx 30rpx;
+    margin-top: -5rpx;
 }
 
 

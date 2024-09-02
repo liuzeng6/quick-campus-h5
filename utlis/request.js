@@ -3,7 +3,7 @@ import mpAdapter from 'axios-miniprogram-adapter'
 import { useUserStore } from '../stores/index.js'
 
 const userStore = useUserStore()
-const baseURL = 'http://cymmc.top:3000/'
+const baseURL = 'http://localhost:3000/'
 
 const instance = axios.create({
   baseURL,

@@ -1,14 +1,13 @@
 {
 	"easycom": {
 		"autoscan": true,
-		// 注意一定要放在custom里，否则无效，https://ask.dcloud.net.cn/question/131175
 		"custom": {
 			"^u--(.*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue",
 			"^up-(.*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue",
 			"^u-([^-].*)": "@/uni_modules/uview-plus/components/u-$1/u-$1.vue"
 		}
 	},
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
 		{
 			"path": "pages/index/index",
 			"style": {
@@ -20,6 +19,13 @@
 			"path": "pages/user/index",
 			"style": {
 				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/details/index",
+			"style": {
+				"navigationBarTitleText": "详情",
 				"enablePullDownRefresh": false
 			}
 		},
@@ -57,7 +63,8 @@
 		"color": "#cdcfe3",
 		"selectedColor": "#5d80e8",
 		"height": "0px",
-		"list": [{
+		"list": [
+			{
 				"pagePath": "pages/index/index",
 				// "iconPath": "static/tabbar/shcool.png",
 				// "selectedIconPath": "static/tabbar/shcool_active.png",

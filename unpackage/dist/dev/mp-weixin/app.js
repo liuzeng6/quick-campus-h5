@@ -6,6 +6,7 @@ const uni_modules_uviewPlus_index = require("./uni_modules/uview-plus/index.js")
 if (!Math) {
   "./pages/index/index.js";
   "./pages/user/index.js";
+  "./pages/details/index.js";
   "./pages/faxian/index.js";
   "./pages/message/index.js";
   "./components/tabbar/tabbar.js";

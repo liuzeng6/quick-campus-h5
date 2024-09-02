@@ -9,13 +9,6 @@
         "底部tab",
         "仿咸鱼凸起导航"
     ],
-    "displayName": "tabbar自定义底部标签栏菜单",
-    "dcloudext": {
-        "category": [
-            "前端组件",
-            "通用组件"
-        ]
-    },
     "dependencies": {
         "axios": "^0.26.0",
         "axios-miniprogram-adapter": "^0.3.5",

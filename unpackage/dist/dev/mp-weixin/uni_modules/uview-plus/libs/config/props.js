@@ -88,7 +88,7 @@ const uni_modules_uviewPlus_components_uToolbar_toolbar = require("../../compone
 const uni_modules_uviewPlus_components_uTooltip_tooltip = require("../../components/u-tooltip/tooltip.js");
 const uni_modules_uviewPlus_components_uTransition_transition = require("../../components/u-transition/transition.js");
 const uni_modules_uviewPlus_components_uUpload_upload = require("../../components/u-upload/upload.js");
-const props = {
+const defProps = {
   ...uni_modules_uviewPlus_components_uActionSheet_actionSheet.ActionSheet,
   ...uni_modules_uviewPlus_components_uAlbum_album.Album,
   ...uni_modules_uviewPlus_components_uAlert_alert.Alert,
@@ -178,4 +178,4 @@ const props = {
   ...uni_modules_uviewPlus_components_uTransition_transition.Transition,
   ...uni_modules_uviewPlus_components_uUpload_upload.Upload
 };
-exports.props = props;
+exports.defProps = defProps;

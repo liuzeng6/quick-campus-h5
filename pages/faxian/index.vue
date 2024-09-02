@@ -56,6 +56,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
+import { getSearch } from '../../api';
 function debounce(func, wait) {
 	let timeout;
 
@@ -134,8 +135,10 @@ let hotList = reactive([
 ]);
 
 let searchHistory = reactive(["真的累", "真的累毁了", "真的累", "真的累毁了", "真的累", "真的累毁了真的累毁了真的累毁了真的累毁了真的累毁了", "真的"]);
-function handleCLick(id) {
-	console.log(id);
+function handleCLick(tid) {
+	uni.navigateTo({
+		url: `/pages/details/index?id=${tid}`
+	});
 }
 function clear(val) {
 	if (val) {
@@ -150,18 +153,22 @@ function clear(val) {
 			success: function (res) {
 				if (res.confirm) {
 					console.log('用户点击确定');
+					searchHistory.splice(0, searchHistory.length);
 				}
 			}
 		});
 	}
 };
-// function search() {
-// 	console.log('a');
-// 	console.log(q);
-// }
-let search = debounce(() => {
-	console.log(q);
-}, 500)
+function close() {
+	q.value = "";
+}
+let search = debounce(async () => {
+	if (q.value) {
+		searchHistory.unshift(q.value);
+		let { data: { data } } = await getSearch(q.value);
+		console.log(data);
+	}
+}, 1000)
 let q = ref("");
 </script>
 

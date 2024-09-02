@@ -1,14 +1,17 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
+const api_index = require("../../api/index.js");
 if (!Array) {
-  const _component_up_icon = common_vendor.resolveComponent("up-icon");
-  const _component_uni_icons = common_vendor.resolveComponent("uni-icons");
+  const _easycom_up_icon2 = common_vendor.resolveComponent("up-icon");
+  const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
   const _easycom_tabbar2 = common_vendor.resolveComponent("tabbar");
-  (_component_up_icon + _component_uni_icons + _easycom_tabbar2)();
+  (_easycom_up_icon2 + _easycom_uni_icons2 + _easycom_tabbar2)();
 }
+const _easycom_up_icon = () => "../../uni_modules/uview-plus/components/u-icon/u-icon.js";
+const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
 const _easycom_tabbar = () => "../../components/tabbar/tabbar2.js";
 if (!Math) {
-  _easycom_tabbar();
+  (_easycom_up_icon + _easycom_uni_icons + _easycom_tabbar)();
 }
 const _sfc_main = {
   __name: "index",
@@ -87,8 +90,10 @@ const _sfc_main = {
       }
     ]);
     let searchHistory = common_vendor.reactive(["真的累", "真的累毁了", "真的累", "真的累毁了", "真的累", "真的累毁了真的累毁了真的累毁了真的累毁了真的累毁了", "真的"]);
-    function handleCLick(id) {
-      console.log(id);
+    function handleCLick(tid) {
+      common_vendor.index.navigateTo({
+        url: `/pages/details/index?id=${tid}`
+      });
     }
     function clear(val) {
       if (val) {
@@ -103,14 +108,22 @@ const _sfc_main = {
           success: function(res) {
             if (res.confirm) {
               console.log("用户点击确定");
+              searchHistory.splice(0, searchHistory.length);
             }
           }
         });
       }
     }
-    let search = debounce(() => {
-      console.log(q);
-    }, 500);
+    function close() {
+      q.value = "";
+    }
+    let search = debounce(async () => {
+      if (q.value) {
+        searchHistory.unshift(q.value);
+        let { data: { data } } = await api_index.getSearch(q.value);
+        console.log(data);
+      }
+    }, 1e3);
     let q = common_vendor.ref("");
     return (_ctx, _cache) => {
       return common_vendor.e({
@@ -122,7 +135,7 @@ const _sfc_main = {
         c: common_vendor.unref(q),
         d: common_vendor.unref(q)
       }, common_vendor.unref(q) ? {
-        e: common_vendor.o(($event) => _ctx.close()),
+        e: common_vendor.o(($event) => close()),
         f: common_vendor.p({
           type: "close",
           size: "44rpx",
