@@ -16,7 +16,20 @@
 			}
 		},
 		{
-			"path": "pages/user/index",
+			"path": "pages/standard/index",
+			"style": {
+				"navigationBarTitleText": "社区规范&小黑屋"
+			}
+		},
+		{
+			"path": "pages/release/index",
+			"style": {
+				"navigationBarTitleText": "发布帖子",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/my/index",
 			"style": {
 				"navigationBarTitleText": "",
 				"enablePullDownRefresh": false
@@ -30,7 +43,7 @@
 			}
 		},
 		{
-			"path": "pages/faxian/index",
+			"path": "pages/find/index",
 			"style": {
 				"navigationBarTitleText": "发现&搜索",
 				"enablePullDownRefresh": false
@@ -51,6 +64,13 @@
 			}
 		},
 		{
+			"path": "pages/profile/index",
+			"style": {
+				"navigationBarTitleText": "个人资料设置",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
 			"path": "pages/search/index",
 			"style": {
 				"navigationBarTitleText": "",
@@ -66,26 +86,18 @@
 		"list": [
 			{
 				"pagePath": "pages/index/index",
-				// "iconPath": "static/tabbar/shcool.png",
-				// "selectedIconPath": "static/tabbar/shcool_active.png",
 				"text": ""
 			},
 			{
-				"pagePath": "pages/faxian/index",
-				// "iconPath": "static/tabbar/faxian.png",
-				// "selectedIconPath": "static/tabbar/faxian_active.png",
+				"pagePath": "pages/find/index",
 				"text": ""
 			},
 			{
 				"pagePath": "pages/message/index",
-				// "iconPath": "static/tabbar/msg-active.png",
-				// "selectedIconPath": "static/tabbar/msg.png",
 				"text": ""
 			},
 			{
-				"pagePath": "pages/user/index",
-				// "iconPath": "static/tabbar/user.png",
-				// "selectedIconPath": "static/tabbar/user-active.png",
+				"pagePath": "pages/my/index",
 				"text": ""
 			}
 		]

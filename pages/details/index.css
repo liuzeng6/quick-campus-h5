@@ -127,12 +127,15 @@ page {
 }
 
 .review .below .nomore {
-    margin: 80rpx 0rpx;
+    /* margin: 80rpx 0rpx; */
+
+    margin-top: 80rpx;
     font-size: 22rpx;
 }
 
 .review .below .copy {
     font-size: 26rpx;
+    margin-top: 80rpx;
 }
 
 
@@ -184,10 +187,66 @@ page {
     border-radius: 10rpx;
 }
 
-.modal .header {}
+.modal .header {
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size: 30rpx;
+    font-weight: 600;
+    width: 100%;
+}
 
 .modal .body {
     flex: 1;
+    text-align: left;
 }
 
-.modal .action {}
+.modal .body .box {
+    border-radius: 5rpx;
+    margin: 0rpx 40rpx;
+    box-sizing: border-box;
+    padding: 25rpx;
+    height: 100%;
+    width: calc(100% - 80rpx);
+    /* width: 100%; */
+    background-color: #F9F9F9;
+}
+
+.modal .body .box #t1 {
+    width: 100%;
+    line-height: 46rpx;
+    height: 100%;
+    font-size: 26rpx;
+}
+
+.modal .action {
+    height: 190rpx;
+    display: flex;
+    align-items: center;
+}
+
+.modal .action .issue {
+    background-color: #0063FF;
+    width: 300rpx;
+    color: #FFFFFF;
+    font-size: 26rpx;
+}
+
+.sidebar {
+    color: #fff;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    position: fixed;
+    bottom: 155rpx;
+    right: 20rpx;
+    font-size: 24rpx;
+    width: 80rpx;
+    background-color: rgba(0, 0, 0, .6);
+    height: 280rpx;
+}
+
+.sidebar view{
+    margin-top: 8rpx;
+    flex: 1;
+}

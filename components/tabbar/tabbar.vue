@@ -24,10 +24,10 @@
 	
 	const barList = ref([
 		{ text: '校园', src: '../../static/tabbar/shcool.png', active: '../../static/tabbar/shcool_active.png', href: '/pages/index/index' },
-		{ text: '发现', src: '../../static/tabbar/faxian.png', active: '../../static/tabbar/faxian_active.png', href: '/pages/faxian/index' },
+		{ text: '发现', src: '../../static/tabbar/faxian.png', active: '../../static/tabbar/faxian_active.png', href: '/pages/find/index' },
 		{ src: '../../static/tabbar/fabu.png' },
 		{ text: '消息', src: '../../static/tabbar/msg.png', active: '../../static/tabbar/msg-active.png', href: '/pages/message/index' },
-		{ text: '我的', src: '../../static/tabbar/user.png', active: '../../static/tabbar/user-active.png', href: '/pages/user/index' },
+		{ text: '我的', src: '../../static/tabbar/user.png', active: '../../static/tabbar/user-active.png', href: '/pages/my/index' },
 	])
 	
 	const checkedBar = index => {
@@ -39,7 +39,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	.tabbar{
 		width: 100%;
 		border-top: 1px solid #ccc;

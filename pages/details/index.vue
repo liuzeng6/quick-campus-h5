@@ -52,31 +52,23 @@
                 </view>
             </view>
             <view class="spread">
-                <image src="../../static/images/banner.png" style="width: 750rpx;height: 250rpx;"></image>
+                <swiper circular indicator-dots>
+                    <swiper-item v-for="item in swipers">
+                        <image :src="item" style="width: 750rpx;height: 250rpx;"></image>
+                    </swiper-item>
+                </swiper>
             </view>
             <view class="review">
                 <view class="header">
                     <view class="title">评论（{{ topicsData.data.comment_number }}）</view>
                     <view class="space"></view>
-                    <view>热度/事件</view>
+                    <Sort :mode="mode" @change="change"></Sort>
                 </view>
-                <view class="list">
-                    <view v-for="item in cList" class="item" :key="item.id">
-                        <view>
-                            <view class="left">
-                                {{ item }}
-                            </view>
-                            <view class="right">
-
-                            </view>
-                        </view>
-
-                    </view>
-                </view>
+                <CommentList :cList="cList"></CommentList>
                 <view class="below">
-                    <view class="nomore">
+                    <!-- <view class="nomore">
                         没有更多评论了~
-                    </view>
+                    </view> -->
                     <view class="copy">
                         一键校园@2024
                     </view>
@@ -98,21 +90,48 @@
             发表评论
         </view>
         <view class="body">
-            <view>发表你的看法</view>
+            <view class="box">
+                <textarea id="t1" v-model="content" placeholder="发表你的看法"></textarea>
+            </view>
         </view>
         <view class="action">
-            <button>发表</button>
+            <button @click="issue" class="issue"><uni-icons type="checkmarkempty" size="26rpx" color="#fff"></uni-icons>
+                发表</button>
         </view>
     </up-popup>
     <view class="sidebar">
-
+        <view>
+            <uni-icons type="compose" size="34rpx" color="#fff"></uni-icons>
+            <view>发布</view>
+        </view>
+        <view>
+            <uni-icons type="chatboxes" size="34rpx" color="#fff"></uni-icons>
+            <view>消息</view>
+        </view>
+        <view>
+            <uni-icons type="home" size="34rpx" color="#fff"></uni-icons>
+            <view>首页</view>
+        </view>
     </view>
 </template>
 <script setup>
+
 import { useRoute } from 'vue-router';
-import request from '@/utlis/request.js'
+import Sort from "./Sort.vue";
 import { timeAgo } from '../../utlis/time';
 import { reactive, ref } from 'vue';
+import CommentList from "./CommentList.vue"
+
+
+let mode = ref(1);
+
+let swipers = reactive([
+    '../../static/images/banner.png',
+]);
+
+let content = ref("");
+// 评论内容
+
 const route = useRoute();
 const topicsData = reactive({
     data: {
@@ -120,7 +139,7 @@ const topicsData = reactive({
     }
 });
 
-const show = ref(true);
+const show = ref(false);
 
 
 const cList = reactive([]);
@@ -137,7 +156,7 @@ topicsData.data = {
     "like_number": 1,
     "views": 0,
     "tag_id": "分享生活",
-    "comment_number": 0,
+    "comment_number": 1,
     "eid": 0,
     "user": {
         "id": 1,
@@ -154,7 +173,7 @@ cList.push(...[
         "tid": 1,
         "uid": 1,
         "read": 1,
-        "content": "是让人感到给对方",
+        "content": "就是哈，这种搬个凳子还拖的人疑似绝美伪人哈，这么晚了还不知道小心一点 ，意义不明哈",
         "createtime": 232424,
         "like_number": 0,
         "is_block": false,
@@ -190,6 +209,47 @@ cList.push(...[
             }
         ],
         "reply_number": 2
+    }, {
+        "id": 5,
+        "tid": 1,
+        "uid": 1,
+        "read": 1,
+        "content": "是让人感到给对方",
+        "createtime": 232424,
+        "like_number": 0,
+        "is_block": false,
+        "rid": 0,
+        "user": {
+            "id": 1,
+            "avatar": "http://cos-cdn.xiaoqucloud.com/common/default_avatar/colorball.png",
+            "nickname": "用户一",
+            "is_block": false
+        },
+        "replies": [
+            {
+                "id": 6,
+                "user": {
+                    "id": 1,
+                    "avatar": "http://cos-cdn.xiaoqucloud.com/common/default_avatar/colorball.png",
+                    "nickname": "用户一"
+                },
+                "content": "就是哈，这种搬个凳子还拖的人疑似绝美伪人哈，这么晚了还不知道小心一点",
+                "createtime": 1723973295,
+                "like_number": 0
+            },
+            {
+                "id": 4,
+                "user": {
+                    "id": 2,
+                    "avatar": "http://cos-cdn.xiaoqucloud.com/common/default_avatar/peach.png",
+                    "nickname": "用户二"
+                },
+                "content": "小丑降临",
+                "createtime": 1723811114,
+                "like_number": 0
+            }
+        ],
+        "reply_number": 2
     }
 ])
 
@@ -205,16 +265,26 @@ const close = () => {
     show.value = false;
 }
 const share = () => {
+    // 触发分享
     console.log("触发分享");
 };
 const collect = () => {
+    // 触发收藏
     console.log("触发收藏");
 };
 
 const report = () => {
+    // 触发巨擘
     console.log("触发举报");
 }
-
+const issue = () => {
+    // 发布评论
+    show.value = false;
+}
+const change = (_mode) => {
+    // 更改帖子排序方式
+    mode.value = _mode;
+}
 
 </script>
 <style scoped>
