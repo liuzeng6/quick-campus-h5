@@ -21,31 +21,32 @@
 					</view>
 				</view>
 			</view>
-			<view class="message-list"></view>
+			<view class="message-list">
+				<up-empty class="empty" mode="comment" icon="http://cdn.uviewui.com/uview/empty/comment.png"></up-empty>
+			</view>
 		</view>
 	</scroll-view>
 	<tabbar checkedIndex="3"></tabbar>
 </template>
 
 <script setup>
-const toCommented = ()=>{
+const toCommented = () => {
 	uni.navigateTo({
-		 url: '/pages/all/commented/index'
+		url: '/pages/all/commented/index'
 	});
-}
-const toLiked = ()=>{
+};
+const toLiked = () => {
 	uni.navigateTo({
-		 url: '/pages/all/liked/index'
+		url: '/pages/all/liked/index'
 	});
-}
+};
 </script>
 
 <style lang="scss" scoped>
 #page {
-	background-color: #F4F5F7;
-
+	background-color: #f4f5f7;
 	.container {
-		min-height:calc(100vh - 85rpx - 100rpx);
+		min-height: calc(100vh - 85rpx - 100rpx);
 		display: flex;
 		flex-direction: column;
 
@@ -57,9 +58,9 @@ const toLiked = ()=>{
 
 			.item {
 				border-radius: 10rpx;
-				border: 1px solid #E7E8EA;
+				border: 1px solid #e7e8ea;
 				width: 325rpx;
-				background-color: #FFFFFF;
+				background-color: #ffffff;
 				line-height: 100rpx;
 				height: 100rpx;
 				display: flex;
@@ -83,10 +84,16 @@ const toLiked = ()=>{
 		.message-list {
 			// height: 1000rpx;
 			flex: 1;
-			background-color: #FFFFFF;
+			background-color: #ffffff;
 			border-radius: 30rpx 30rpx 0rpx 0rpx;
+			position: relative;
+			.empty {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				width: 100%;
+			}
 		}
 	}
-
 }
 </style>

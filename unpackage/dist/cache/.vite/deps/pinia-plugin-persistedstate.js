@@ -1,6 +1,6 @@
 import "./chunk-LQ2VYIYD.js";
 
-// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/pinia-plugin-persistedstate/dist/index.js
+// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/pinia-plugin-persistedstate/dist/index.js
 function isObject(v) {
   return typeof v === "object" && v !== null;
 }
