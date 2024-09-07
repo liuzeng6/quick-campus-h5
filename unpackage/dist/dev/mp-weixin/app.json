@@ -1,11 +1,21 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/user/index",
+    "pages/ranking/index",
+    "pages/standard/index",
+    "pages/settings/index",
+    "pages/all/topic/index",
+    "pages/all/collection/index",
+    "pages/all/commented/index",
+    "pages/all/liked/index",
+    "pages/certify/index",
+    "pages/release/index",
+    "pages/my/index",
     "pages/details/index",
-    "pages/faxian/index",
+    "pages/find/index",
     "pages/message/index",
     "components/tabbar/tabbar",
+    "pages/profile/index",
     "pages/search/index"
   ],
   "window": {
@@ -24,7 +34,7 @@
         "text": ""
       },
       {
-        "pagePath": "pages/faxian/index",
+        "pagePath": "pages/find/index",
         "text": ""
       },
       {
@@ -32,7 +42,7 @@
         "text": ""
       },
       {
-        "pagePath": "pages/user/index",
+        "pagePath": "pages/my/index",
         "text": ""
       }
     ]

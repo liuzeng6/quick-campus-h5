@@ -1292,7 +1292,7 @@ function populateParameters(fromRes, toRes) {
   let _SDKVersion = SDKVersion;
   const hostLanguage = language.replace(/_/g, "-");
   const parameters = {
-    appId: "__UNI__49056D8",
+    appId: "__UNI__6461847",
     appName: "school",
     appVersion: "1.0.0",
     appVersionCode: "100",
@@ -1436,7 +1436,7 @@ const getAppBaseInfo = {
       hostName: _hostName,
       hostSDKVersion: SDKVersion,
       hostTheme: theme,
-      appId: "__UNI__49056D8",
+      appId: "__UNI__6461847",
       appName: "school",
       appVersion: "1.0.0",
       appVersionCode: "100",
@@ -10132,6 +10132,7 @@ exports.index = index;
 exports.isRef = isRef;
 exports.mpAdapter = mpAdapter;
 exports.n = n;
+exports.nextTick$1 = nextTick$1;
 exports.o = o;
 exports.onLaunch = onLaunch;
 exports.onMounted = onMounted;

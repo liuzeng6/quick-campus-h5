@@ -3,7 +3,7 @@ const common_vendor = require("../common/vendor.js");
 require("../stores/index.js");
 const stores_modules_user = require("../stores/modules/user.js");
 const userStore = stores_modules_user.useUserStore();
-const baseURL = "http://localhost:3000/";
+const baseURL = "http://cymmc.top:3000/";
 const instance = common_vendor.axios.create({
   baseURL,
   timeout: 5e3,

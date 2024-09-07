@@ -1,4 +1,17 @@
 <template>
+	<up-popup :closeOnClickOverlay="true" :show="show" mode="bottom" @close="close" class="modal">
+		<view class="box">
+			<view class="header">
+				展示二维码邀请朋友一起加入吧 ⛵
+			</view>
+			<view class="bg">
+				<view class="picture">
+					<image :src="qc_code" style="width: 190rpx;height: 190rpx;margin-top: 40rpx;margin-left: 40rpx;">
+					</image>
+				</view>
+			</view>
+		</view>
+	</up-popup>
 	<scroll-view :scroll-y="true" id="page">
 		<view class="card">
 			<view class="above">
@@ -14,50 +27,50 @@
 				</view>
 			</view>
 			<view class="below">
-				<view class="item" v-for="(el, index) in arr" :key="index">
+				<view class="item" v-for="(el, index) in arr" :key="index" @click="toTotal(index)">
 					<view class="text">{{ el.text }}<uni-icons type="right" size="30rpx"></uni-icons></view>
 					<view class="count">{{ el.count }}</view>
 				</view>
 			</view>
 		</view>
 		<view class="group">
-			<view class="item" @click="handleCLick">
-				<view><uni-icons type="gift-filled" size="44rpx"></uni-icons></view>
+			<view class="item" @click="toCertify">
+				<view><uni-icons type="gift-filled" size="44rpx" color="#545A68"></uni-icons></view>
 				<view class="text">校园认证</view>
 				<view class="right">{{ `未认证` }}<uni-icons type="right" color="#B8B8B8"></uni-icons></view>
 			</view>
 		</view>
 		<view class="group">
 			<view class="item" @click="toStandard">
-				<view><uni-icons type="gift-filled" size="44rpx"></uni-icons></view>
+				<view><uni-icons type="home" size="44rpx"></uni-icons></view>
 				<view class="text">社区规范&小黑屋</view>
 				<view class="right"><uni-icons type="right" color="#B8B8B8"></uni-icons></view>
 			</view>
-			<view class="item" @click="handleCLick">
-				<view><uni-icons type="gift-filled" size="44rpx"></uni-icons></view>
+			<view class="item" @click="share">
+				<view><uni-icons type="staff" size="44rpx" color="#06AB6B"></uni-icons></view>
 				<view class="text">分享好友</view>
 				<view class="right"><uni-icons type="right" color="#B8B8B8"></uni-icons></view>
 			</view>
-			<view class="item" @click="handleCLick">
-				<view><uni-icons type="gift-filled" size="44rpx"></uni-icons></view>
+			<view class="item" @click="open">
+				<view><uni-icons type="weixin" size="44rpx" color="#3AD4A5"></uni-icons></view>
 				<view class="text">联系墙墙</view>
 				<view class="right"><uni-icons type="right" color="#B8B8B8"></uni-icons></view>
 			</view>
 		</view>
 		<view class="group">
-			<view class="item" @click="handleCLick">
-				<view><uni-icons type="gift-filled" size="44rpx"></uni-icons></view>
+			<view class="item" @click="open">
+				<view><uni-icons type="help" size="44rpx" color="#F58755"></uni-icons></view>
 				<view class="text">问题反馈</view>
 				<view class="right"><uni-icons type="right" color="#B8B8B8"></uni-icons></view>
 			</view>
-			<view class="item" @click="handleCLick">
-				<view><uni-icons type="gift-filled" size="44rpx"></uni-icons></view>
+			<view class="item" @click="clearCache">
+				<view><uni-icons type="trash" size="44rpx" color="#FF6966"></uni-icons></view>
 				<view class="text">清除缓存</view>
 				<view class="right"><uni-icons type="right" color="#B8B8B8"></uni-icons></view>
 			</view>
-			<view class="item" @click="handleCLick">
-				<view><uni-icons type="gift-filled" size="44rpx"></uni-icons></view>
-				<view class="text">重新登录</view>
+			<view class="item" @click="toSettings">
+				<view><uni-icons type="settings" size="44rpx" color="#4186F0"></uni-icons></view>
+				<view class="text">设置</view>
 				<view class="right"><uni-icons type="right" color="#B8B8B8"></uni-icons></view>
 			</view>
 		</view>
@@ -71,6 +84,9 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+const qc_code = "../../static/images/qc_code.jpg";
+
 let count = {
 	"collection_count": 3,
 	"commented_count": 4,
@@ -101,13 +117,67 @@ let userInfo = {
 	id: 9122,
 }
 
+let show = ref(false);
+const close = () => {
+	show.value = false;
+}
+
+const open = () => {
+	show.value = true;
+}
 const edit = () => {
 	// 
-	console.log("跳转到用户资料修改页面");
+	uni.navigateTo({
+		url:"/pages/profile/index"
+	})
+	// console.log("跳转到用户资料修改页面");
 }
 
 const handleCLick = () => {
 	console.log("object");
+}
+
+const clearCache = () => {
+	uni.showModal({
+		title: '提示',
+		content: '⚠是否要清除缓存？',
+		success: function (res) {
+			if (res.confirm) {
+				console.log("clearCache");
+			}
+		}
+	});
+}
+
+const toTotal = (index) => {
+	switch (index) {
+		case 0:
+			uni.navigateTo({
+				url: `/pages/all/topic/index`
+			});
+			break;
+		case 1:
+			uni.navigateTo({
+				url: `/pages/all/liked/index`
+			});
+			break;
+		case 2:
+			uni.navigateTo({
+				url: `/pages/all/commented/index`
+			});
+			break;
+		case 3: uni.navigateTo({
+			url: `/pages/all/collection/index`
+		});
+			break;
+
+	}
+}
+
+const toSettings = () => {
+	uni.navigateTo({
+		url: '/pages/settings/index'
+	});
 }
 
 const toStandard = () => {
@@ -115,9 +185,53 @@ const toStandard = () => {
 		url: '/pages/standard/index'
 	});
 }
+const toCertify = () => {
+	uni.navigateTo({
+		url: '/pages/certify/index'
+	});
+}
+
+const share = () => {
+	console.log('分享');
+}
+
 </script>
 
 <style scoped lang="scss">
+:deep(.u-popup__content) {
+	border-radius: 30rpx 30rpx 0rpx 0rpx;
+}
+
+.modal .box {
+	background-color: #FFFFFF;
+	height: 500rpx;
+	border-radius: 20rpx;
+
+	.header {
+		height: 110rpx;
+		text-align: center;
+		color: #999BA1;
+		font-size: 26rpx;
+		line-height: 110rpx;
+	}
+
+	.bg {
+		background-color: #F6F6F6;
+
+		.picture {
+			background: url("../../static/images/kf.webp");
+			background-size: 100% 100%;
+			margin: 0rpx 20rpx;
+			height: 270rpx;
+		}
+
+		margin: 0rpx 5rpx;
+		box-sizing: border-box;
+		padding-top: 30rpx;
+		height: 330rpx;
+	}
+}
+
 #page {
 	background-color: #F6F6F6;
 	padding-bottom: 200rpx;

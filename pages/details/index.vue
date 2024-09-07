@@ -116,7 +116,6 @@
 </template>
 <script setup>
 
-import { useRoute } from 'vue-router';
 import Sort from "./Sort.vue";
 import { timeAgo } from '../../utlis/time';
 import { reactive, ref } from 'vue';
@@ -132,7 +131,6 @@ let swipers = reactive([
 let content = ref("");
 // 评论内容
 
-const route = useRoute();
 const topicsData = reactive({
     data: {
 
@@ -144,7 +142,7 @@ const show = ref(false);
 
 const cList = reactive([]);
 
-let { id } = route.query;
+let id = 1;
 topicsData.data = {
     "id": 1,
     "uid": 1,
