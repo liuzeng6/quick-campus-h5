@@ -1,24 +1,24 @@
 <template>
     <view id="page">
         <view class="items">
-            <view class="item" @click="changeAvatar">
-                <view class="text">头像</view>
+            <button open-type="chooseAvatar" :plain="true" style="border: none;box-sizing: border-box;" class="item" @click="clickAvatar" @chooseavatar="changeAvatar">
+                <view class="text" style="text-align: left;">头像</view>
                 <view class="avatar">
-                    <image src="http://cos-cdn.xiaoqucloud.com/common/default_avatar/colorball.png"></image>
+                    <image :src="userInfo.avatar"></image>
                 </view>
                 <view class="arrow">
                     <uni-icons type="right" size="30rpx" color="#909090"></uni-icons>
                 </view>
-            </view>
-            <view class="item" @click="changeAvatar">
+            </button>
+            <button :plain="true" style="border: none;box-sizing: border-box;" class="item">
                 <view class="text">昵称</view>
                 <view class="nickname">
-                    <input type="text" value="小猫老弟">
+                    <input type="nickname" maxlength="16" v-model="userInfo.nickname" @click="changeNickname">
                 </view>
                 <view class="arrow">
                     <uni-icons type="right" size="30rpx" color="#909090"></uni-icons>
                 </view>
-            </view>
+            </button>
         </view>
         <button class="save" @click="save" :dis="disabled">
             保存
@@ -26,18 +26,74 @@
     </view>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, toRaw } from "vue";
+import { useUserStore } from "../../stores";
+import request from '@/utlis/request.js'
+const userInfo = ref({ ...(useUserStore().userInfo.value) });
+
+
+
 let disabled = ref(false);
-const save = () => {
-    console.log("保存");
-}
-const changeAvatar = () => {
+const save = async () => {
+    if (disabled.value) {
+        let { avatar, nickname } = userInfo.value;
+        let form = { avatar, nickname };
+        if ("" == nickname) {
+            uni.showToast({
+                title: "昵称不能为空",
+                icon: "none"
+            });
+            return false;
+        }
+        if (nickname.length > 16) {
+            uni.showToast({
+                title: "昵称不能超过16个字",
+                icon: "none"
+            });
+            return false;
+        }
+
+        let { data } = await request.put("/user/profile", form);
+        if (data.code == 1) {
+            uni.showToast({
+                title: "修改成功",
+                icon: "none"
+            });
+            let userInfo = (useUserStore()).userInfo.value;
+            userInfo.nickname = nickname;
+            userInfo.avatar = avatar;
+        } else {
+            uni.showToast({
+                title: "修改失败",
+                icon: "none"
+            });
+        }
+        console.log(form);
+
+    } else {
+        return false
+    }
 
 }
-
-const changeNickname = () => {
-
+const clickAvatar = () => {
+    uni.showToast({
+        title: "暂时不支持修改头像",
+        icon: "none"
+    })
 }
+const changeNickname = async (ev) => {
+    disabled.value = true;
+}
+const changeAvatar = async (ev) => {
+    disabled.value = true;
+    uni.showToast({
+        title: '暂时不支持修改头像',
+        icon: "none",
+        duration: 2000
+    });
+    // userInfo.value.avatar = ev.detail.avatarUrl
+}
+
 
 </script>
 <style scoped>
@@ -53,12 +109,12 @@ const changeNickname = () => {
 .items .item {
     height: 120rpx;
     border-bottom: 1px solid #F0F0F0;
-    margin: 0rpx 25rpx;
     line-height: 120rpx;
     display: flex;
 }
 
 .items .item .text {
+    text-align: left;
     flex: 1;
     font-weight: 600;
 }

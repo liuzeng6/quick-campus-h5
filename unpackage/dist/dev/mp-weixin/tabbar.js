@@ -1,6 +1,7 @@
 "use strict";
 const common_vendor = require("./common/vendor.js");
-const api_index = require("./api/index.js");
+require("./utlis/request.js");
+const stores_appData = require("./stores/appData.js");
 if (!Array) {
   const _component_uni_icon = common_vendor.resolveComponent("uni-icon");
   const _easycom_up_popup2 = common_vendor.resolveComponent("up-popup");
@@ -22,7 +23,7 @@ const _sfc_main = {
     const show = common_vendor.ref(false);
     const tags = common_vendor.ref([]);
     const barList = common_vendor.ref([
-      { text: "校园", src: "../../static/tabbar/shcool.png", active: "../../static/tabbar/shcool_active.png", href: "/pages/index/index" },
+      { text: "校园", src: "../../static/tabbar/shcool.png", active: "../../static/tabbar/shcool_active.png", href: "/pages/home/index" },
       { text: "发现", src: "../../static/tabbar/faxian.png", active: "../../static/tabbar/faxian_active.png", href: "/pages/find/index" },
       { src: "../../static/tabbar/fabu.png" },
       { text: "消息", src: "../../static/tabbar/msg.png", active: "../../static/tabbar/msg-active.png", href: "/pages/message/index" },
@@ -31,9 +32,13 @@ const _sfc_main = {
     common_vendor.onMounted(() => {
       getTagList();
     });
+    const toRelease = (id) => {
+      common_vendor.index.navigateTo({
+        url: `/pages/release/index?mode=${id}`
+      });
+    };
     const getTagList = async () => {
-      const res = await api_index.getTags();
-      tags.value = res.data.data;
+      tags.value = stores_appData.appData.tags.filter((el) => el.enable);
     };
     const checkedBar = (index) => {
       if (index === 2) {
@@ -52,17 +57,19 @@ const _sfc_main = {
             b: common_vendor.n(item.src.includes("fabu") ? "item-img fabu" : "item-img"),
             c: !item.src.includes("fabu")
           }, !item.src.includes("fabu") ? {
-            d: common_vendor.t(item.text)
+            d: common_vendor.t(item.text),
+            e: common_vendor.n(__props.checkedIndex == index ? "item-text-active text" : "text")
           } : {}, {
-            e: common_vendor.o(($event) => checkedBar(index), item.src),
-            f: item.src
+            f: common_vendor.o(($event) => checkedBar(index), item.src),
+            g: item.src
           });
         }),
         b: common_vendor.f(tags.value, (item, k0, i0) => {
           return {
             a: "e9b92a61-1-" + i0 + ",e9b92a61-0",
             b: common_vendor.t(item.tag),
-            c: item.id
+            c: item.id,
+            d: common_vendor.o(($event) => toRelease(item.id), item.id)
           };
         }),
         c: common_vendor.p({

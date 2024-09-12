@@ -1,8 +1,8 @@
 import { createPinia } from 'pinia'
-import persistedstate from 'pinia-plugin-persistedstate'
+// import persistedstate from 'pinia-plugin-persistedstate'
 
 const pinai = createPinia()
-pinai.use(persistedstate)
+// pinai.use(persistedstate)
 
 export default pinai
 

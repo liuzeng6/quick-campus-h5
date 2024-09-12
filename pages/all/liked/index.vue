@@ -1,7 +1,7 @@
 <template>
     <scroll-view :scroll-y="true" id="page">
         <view class="items">
-            <view class="item" v-for="(el, index) in list" @click="toTopic(el.uid)">
+            <view class="item" v-for="(el, index) in list" @click="toTopic(el.tid)">
                 <view class="above">
                     <view class="avatar">
                         <image :src="el.user.avatar"></image>
@@ -12,7 +12,7 @@
                         </view>
                         <view class="flex">
                             <view class="time">
-                                {{ el.createtime }}
+                                {{ toDate(el.createtime * 1000) }}
                             </view>
                             <view class="space">·</view>
                             <view class="msg">
@@ -33,27 +33,21 @@
     </scroll-view>
 </template>
 <script setup>
-const toTopic = (uid) => {
+import { ref, onMounted } from "vue";
+import request from "@/utlis/request";
+import { toDate } from "../../../utlis/time";
+let list = ref([]);
+onMounted(async () => {
+    let { data: { data } } = await request("/community/my/likeds");
+    list.value = data;
+})
+
+const toTopic = (tid) => {
     uni.navigateTo({
-        url: `/pages/details/index?id=${uid}`
+        url: `/pages/details/index?id=${tid}`
     });
 }
-let list = [
-    {
-        "id": 2,
-        "uid": 2,
-        "cid": 0,
-        "tid": 2,
-        "createtime": 24346,
-        "read": 0,
-        "title": "标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题",
-        "user": {
-            "id": 2,
-            "avatar": "http://cos-cdn.xiaoqucloud.com/common/default_avatar/peach.png",
-            "nickname": "用户二"
-        }
-    }
-]
+
 </script>
 <style scoped lang="scss">
 #page {
@@ -88,6 +82,7 @@ let list = [
 
                 .content {
                     flex: 1;
+
                     .nickname {
                         color: #586082;
                         font-size: 28rpx;

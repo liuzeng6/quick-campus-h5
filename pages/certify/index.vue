@@ -1,6 +1,6 @@
 <template>
     <view>
-        认证页面
+        暂时不支持认证
     </view>
 </template>
 <script setup>

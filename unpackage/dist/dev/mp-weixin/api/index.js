@@ -1,5 +1,6 @@
 "use strict";
 const utlis_request = require("../utlis/request.js");
+const getConfigs = () => utlis_request.instance.get("/application/configs");
 const getSearch = (keyword) => utlis_request.instance.get("/community/search/topics", {
   params: {
     keyword
@@ -16,6 +17,7 @@ const getTopiceAll = (pageInfo, tag_id) => {
     }
   });
 };
+exports.getConfigs = getConfigs;
 exports.getSearch = getSearch;
 exports.getTags = getTags;
 exports.getTopiceAll = getTopiceAll;

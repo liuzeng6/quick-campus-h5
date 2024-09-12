@@ -2,9 +2,12 @@
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const common_vendor = require("./common/vendor.js");
 const stores_index = require("./stores/index.js");
+const stores_appData = require("./stores/appData.js");
+const api_index = require("./api/index.js");
+const stores_modules_user = require("./stores/modules/user.js");
 const uni_modules_uviewPlus_index = require("./uni_modules/uview-plus/index.js");
 if (!Math) {
-  "./pages/index/index.js";
+  "./pages/home/index.js";
   "./pages/ranking/index.js";
   "./pages/standard/index.js";
   "./pages/settings/index.js";
@@ -20,12 +23,102 @@ if (!Math) {
   "./pages/message/index.js";
   "./components/tabbar/tabbar.js";
   "./pages/profile/index.js";
-  "./pages/search/index.js";
 }
 const _sfc_main = {
   __name: "App",
   setup(__props) {
-    common_vendor.onLaunch(() => {
+    const userStore = stores_modules_user.useUserStore();
+    const baseURL = "http://localhost:3000";
+    const login = () => {
+      const instance = common_vendor.axios.create({
+        baseURL,
+        timeout: 5e3,
+        adapter: common_vendor.mpAdapter
+      });
+      return new Promise((resolve, reject) => {
+        common_vendor.index.login({
+          provider: "weixin",
+          onlyAuthorize: true,
+          success(res) {
+            instance(`/weixin/openid?code=${res.code}`).then(({ data }) => {
+              if (data.code == 1) {
+                resolve(data.data);
+              } else {
+                reject(data);
+              }
+            });
+          },
+          fail(err) {
+            if (localStorage.openid) {
+              resolve(localStorage.openid);
+            } else {
+              try {
+                let input = location.search.substring(8);
+                if (input) {
+                  instance(`/weixin/oauth?code=${input}`).then(({ data }) => {
+                    if (data.code == 1) {
+                      resolve(input);
+                    } else {
+                      reject(err);
+                    }
+                  }, (err2) => {
+                    reject(err2);
+                  });
+                } else {
+                  reject(err);
+                }
+              } catch (e) {
+                reject(e);
+              }
+            }
+          }
+        });
+      });
+    };
+    common_vendor.onLaunch(async () => {
+      try {
+        let token = common_vendor.index.getStorageSync("openid");
+        let flag = false;
+        let openid = "";
+        if (token) {
+          openid = token;
+        } else {
+          flag = true;
+          openid = await login();
+        }
+        stores_appData.appData.openid = openid;
+        const instance = common_vendor.axios.create({
+          baseURL,
+          timeout: 5e3,
+          adapter: common_vendor.mpAdapter,
+          headers: { "Authorization": openid }
+        });
+        let { data: { data } } = await instance("/user/profile");
+        if (data.msg == "register") {
+          common_vendor.index.setStorageSync("openid", openid);
+          let { data: { data: data2 } } = await instance("/user/profile");
+          userStore.userInfo.value = data2;
+        } else {
+          if (flag) {
+            common_vendor.index.setStorageSync("openid", openid);
+          }
+          userStore.userInfo.value = data;
+        }
+      } catch (e) {
+        console.log(e);
+        common_vendor.index.showToast({
+          icon: "none",
+          title: "不支持的设备类型",
+          duration: 2e3
+        });
+      } finally {
+        stores_appData.appData.auth = true;
+        let { data: { data } } = await api_index.getTags();
+        stores_appData.appData.tags = data;
+        let { data: { data: configs } } = await api_index.getConfigs();
+        stores_appData.appData.spread = configs.spread;
+        stores_appData.appData.qc_code = configs.qc_code;
+      }
     });
     return (_ctx, _cache) => {
       return {};

@@ -35,4 +35,21 @@ export function timeAgo(timestamp) {
         // 理论上这里不应该执行，除非时间戳是未来的时间  
         return '刚刚';
     }
+}
+export function toDate(timestamp) {
+    // 创建一个Date对象  
+    const date = new Date(timestamp);
+
+    // 使用getFullYear()、getMonth() + 1（因为月份是从0开始的）、getDate()等  
+    // 方法来获取年、月、日、时、分、秒，并使用padStart()方法来确保月份、日期和小时等  
+    // 总是两位数（例如，"04" 而不是 "4"）  
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+
+    // 拼接成MySQL日期时间格式  
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }  

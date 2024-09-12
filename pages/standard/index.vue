@@ -1,6 +1,6 @@
 <template>
     <view>
-        小黑屋页面
+        还未开放
     </view>
 </template>
 <script setup>

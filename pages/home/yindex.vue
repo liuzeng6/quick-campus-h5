@@ -1,6 +1,6 @@
 <template>
 	<navbar :isHome='true' @getStatusHeight='getStatusHeight'></navbar>
-	<tabbar checkedIndex='0' ></tabbar>
+	<tabbar checkedIndex='0'></tabbar>
 	<view>
 		<view class="nav-comp base" :style="'margin-top:' + barHeight + 'rpx'">
 			<view class="nav-list">
@@ -29,7 +29,8 @@
 				<image src="../../static/images/hot.png" mode=""></image>
 			</view>
 			<view class="hot-swiper">
-				<swiper class="swiper" :indicator-dots='false' autoplay :interval='5000' circular :vertical='true' :duration='800'>
+				<swiper class="swiper" :indicator-dots='false' autoplay :interval='5000' circular :vertical='true'
+					:duration='800'>
 					<swiper-item v-for="item in hotTopicList" :key="item.id">
 						<view class="swiper-item">
 							<view :class="item.id <= 3 ? 'top3 no' : 'no'">{{ item.id }}</view>
@@ -41,13 +42,9 @@
 		</view>
 		<view class="card">
 			<view class="card-title">
-				<view :class="!tagId  ? 'color-active' : ''" @click="getTopiceAllByTag">全部</view>
-				<view
-
-				v-for="item in tags"
-				:key="item.id"
-				:class="tagId === item.id ?  'color-active' : ''"
-				@click="getTopiceByTag(item.id)">
+				<view :class="!tagId ? 'color-active' : ''" @click="getTopiceAllByTag">全部</view>
+				<view v-for="item in tags" :key="item.id" :class="tagId === item.id ? 'color-active' : ''"
+					@click="getTopiceByTag(item.id)">
 					{{ item.tag }}
 				</view>
 			</view>
@@ -83,62 +80,61 @@
 </template>
 
 <script setup>
-	import {  nextTick, onMounted, ref, reactive} from 'vue'
-	import { onLoad, onLaunch } from '@dcloudio/uni-app'
-	import tabbar from '@/components/tabbar/tabbar.vue'
-	import { getTopics, getTags, getTopiceAll } from '../../api/index.js'
+import { nextTick, onMounted, ref, reactive } from 'vue'
+import tabbar from '@/components/tabbar/tabbar.vue'
+import { getTopics, getTags, getTopiceAll } from '../../api/index.js'
 
-	let barHeight = ref(0)
-	let tagId = ref('')
-	// 热榜
-	let hotTopicList = ref([])
-	// 标签
-	let tags = ref([])
-	// 帖子
-	let topicList = ref([])
-	// 页码
-	let pageInfo = reactive({
-		page: 1,
-		pageSize: 10
-	})
+let barHeight = ref(0)
+let tagId = ref('')
+// 热榜
+let hotTopicList = ref([])
+// 标签
+let tags = ref([])
+// 帖子
+let topicList = ref([])
+// 页码
+let pageInfo = reactive({
+	page: 1,
+	pageSize: 10
+})
 
-	onMounted(() => {
-		getHotTopics()
-		getTagAll()
-		getTopice(pageInfo, tagId.value)
-	})
+onMounted(() => {
+	getHotTopics()
+	getTagAll()
+	getTopice(pageInfo, tagId.value)
+})
 
-	// 获取navbar高度
-	const getStatusHeight= navBarHeight => {
-		barHeight.value = navBarHeight
-	}
-	// 获取热榜
-	const getHotTopics = async () => {
-		let res = await getTopics()
-		hotTopicList.value = res.data.data
-	}
-	// 获取标签
-	const getTagAll = async () => {
-		let res = await getTags()
-		tags.value = res.data.data
-	}
-	// 点击全部标签
-	const getTopiceAllByTag = () => {
-		tagId.value = ''
-		getTopice(pageInfo, tagId.value)
-	}
-	// 通过标签获取帖子
-	const getTopiceByTag = id => {
-		tagId.value = id
-		getTopice(pageInfo, tagId.value)
-	}
-	// 获取所有帖子
-	const getTopice = async (pageInfo, tagId) => {
-		let res = await getTopiceAll(pageInfo, tagId)
-		topicList.value = res.data.data
-	}
+// 获取navbar高度
+const getStatusHeight = navBarHeight => {
+	barHeight.value = navBarHeight
+}
+// 获取热榜
+const getHotTopics = async () => {
+	let res = await getTopics()
+	hotTopicList.value = res.data.data
+}
+// 获取标签
+const getTagAll = async () => {
+	let res = await getTags()
+	tags.value = res.data.data
+}
+// 点击全部标签
+const getTopiceAllByTag = () => {
+	tagId.value = ''
+	getTopice(pageInfo, tagId.value)
+}
+// 通过标签获取帖子
+const getTopiceByTag = id => {
+	tagId.value = id
+	getTopice(pageInfo, tagId.value)
+}
+// 获取所有帖子
+const getTopice = async (pageInfo, tagId) => {
+	let res = await getTopiceAll(pageInfo, tagId)
+	topicList.value = res.data.data
+}
 </script>
 
 <style scoped>
-	@import './index.css';
+@import './index.css';
 </style>

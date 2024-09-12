@@ -13,14 +13,14 @@ const porps = defineProps({
     mode: Number,
 });
 
-const emit = defineEmits({
+const emits = defineEmits({
     change: Function
 });
 
 function handleClick(mode) {
     if (mode != porps.mode) {
         console.log(mode);
-        emit("change", mode);
+        emits("change", mode);
     }
 }
 

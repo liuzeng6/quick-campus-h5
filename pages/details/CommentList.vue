@@ -1,6 +1,6 @@
 <template>
     <view class="list" v-if="props.cList.length">
-        <view class="item" v-for="(item, index) in props.cList">
+        <view class="item" v-for="(item, index) in props.cList" v-show="item.id">
             <view class="left" @click="handleCLick()">
                 <image :src="item.user.avatar"></image>
             </view>
@@ -9,18 +9,18 @@
                     <view>
                         {{ item.user.nickname }}
                     </view>
-                    <view class="sign">
+                    <view class="sign" v-show="item.uid == item.user.id">
                         楼主
                     </view>
                 </view>
-                <view @click.stop="reply()">
+                <view @click.stop="reply({ 'comment_id': item.id, ruid: 0 }, item.uid == uid)">
                     <view class="text">
                         {{ item.content }}
                     </view>
                     <view class="flex">
                         <view class="l">
                             <view class="time">
-                                {{ timeAgo(item.createtime) }}
+                                {{ timeAgo(item.createtime * 1000) }}
                             </view>
                             <view class="reply">
                                 回复
@@ -29,31 +29,31 @@
                         <view class="space"></view>
                         <view class="r" @click.stop="like()">
                             <uni-icons type="hand-up" size="40rpx" color="#919191"></uni-icons>
-                            <view class="num">{{ item.like_number }}</view>
+                            <view class="num" v-show="like_number">{{ item.like_number }}</view>
                         </view>
                     </view>
                 </view>
-                <view class="item replies" v-for="item in item.replies">
+                <view class="item replies" v-for="el in item.replies">
                     <view class="left" @click="handleCLick()" style="margin-left: 5rpx;">
-                        <image :src="item.user.avatar"></image>
+                        <image :src="el.user.avatar"></image>
                     </view>
                     <view class="right">
                         <view class="nickname">
                             <view>
-                                {{ item.user.nickname }}
+                              {{ el.user.nickname }} <text v-show="el.ruser"> > {{ el.ruser }}</text> 
                             </view>
-                            <view class="sign">
+                            <view class="sign" v-show="item.uid == el.user.id">
                                 楼主
                             </view>
                         </view>
-                        <view @click.stop="reply()">
+                        <view @click.stop="reply({ 'comment_id': item.id, ruid: el.user.id }, el.user.id == uid)">
                             <view class="text">
-                                {{ item.content }}
+                                {{ el.content }}
                             </view>
                             <view class="flex">
                                 <view class="l">
                                     <view class="time">
-                                        {{ timeAgo(item.createtime) }}
+                                        {{ timeAgo(el.createtime * 1000) }}
                                     </view>
                                     <view class="reply">
                                         回复
@@ -62,7 +62,7 @@
                                 <view class="space"></view>
                                 <view class="r" @click.stop="like()">
                                     <uni-icons type="hand-up" size="40rpx" color="#919191"></uni-icons>
-                                    <view class="num">{{ item.like_number }}</view>
+                                    <view class="num" v-show="el.like_number">{{ el.like_number }}</view>
                                 </view>
                             </view>
                         </view>
@@ -71,24 +71,44 @@
             </view>
         </view>
     </view>
-    <view v-else>
-        暂无评论快来抢占沙发
+    <view v-else style="text-align: center;font-size: 24rpx;color: #BEBEBE;margin-top: 100rpx;">
+        暂无评论快来抢占沙发🛋
     </view>
 </template>
 <script setup>
 
+import { useUserStore } from '../../stores';
+import appData from '../../stores/appData';
 import { timeAgo } from '../../utlis/time';
+import { ref, onMounted } from "vue";
 const props = defineProps({
-    "cList": Array
+    "cList": Array,
+    "tid": Number
 });
+const emits = defineEmits(['open']);
+let userStore = useUserStore();
+let uid = userStore.userInfo.value.id || -1;
+
 const handleCLick = () => {
     console.log("a");
 }
 const like = () => {
-    console.log("like");
+    uni.showToast({
+        icon: "none",
+        title: '暂时不支持该操作',
+        duration: 2000
+    });
 }
-const reply = () => {
-    console.log("reply");
+const reply = (opt, flag) => {
+    if (flag) {
+        uni.showToast({
+            icon: "none",
+            title: '你不能回复自己的评论',
+            duration: 2000
+        });
+    } else {
+        emits("open", opt);
+    }
 }
 </script>
 <style scoped>
@@ -124,8 +144,10 @@ const reply = () => {
 .item .right .nickname {
     color: #B0B0B0;
     display: flex;
+    font-size: 24rpx;
 }
-.item .right .nickname .sign{
+
+.item .right .nickname .sign {
     background-color: #007AFF;
     color: #FFFFFF;
     font-size: 18rpx;

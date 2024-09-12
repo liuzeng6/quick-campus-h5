@@ -1,23 +1,29 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
-require("../stores/index.js");
-const stores_modules_user = require("../stores/modules/user.js");
-const userStore = stores_modules_user.useUserStore();
-const baseURL = "http://cymmc.top:3000/";
+const stores_appData = require("../stores/appData.js");
+const baseURL = "http://localhost:3000";
 const instance = common_vendor.axios.create({
   baseURL,
   timeout: 5e3,
-  adapter: common_vendor.mpAdapter,
-  headers: { "Authorization": userStore.Authorization }
+  adapter: common_vendor.mpAdapter
 });
-common_vendor.axios.interceptors.request.use(function(config) {
+instance.interceptors.request.use(function(config) {
+  if (stores_appData.appData.openid) {
+    config.headers.Authorization = stores_appData.appData.openid;
+  } else {
+    console.log("没有值");
+    if (!stores_appData.appData.auth) {
+      config.headers.Authorization = "OoPvL6mSXGJ7crsbcYCPBTDI91dK86IN";
+    }
+  }
   return config;
 }, function(error) {
   return Promise.reject(error);
 });
-common_vendor.axios.interceptors.response.use(function(res) {
+instance.interceptors.response.use(function(res) {
   return res;
 }, function(error) {
   return Promise.reject(error);
 });
+exports.baseURL = baseURL;
 exports.instance = instance;

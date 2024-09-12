@@ -27,7 +27,7 @@
 				</view>
 			</view>
 			<view class="below">
-				<view class="item" v-for="(el, index) in arr" :key="index" @click="toTotal(index)">
+				<view class="item" v-for="(el, index) in count" :key="index" @click="skip(el.path)">
 					<view class="text">{{ el.text }}<uni-icons type="right" size="30rpx"></uni-icons></view>
 					<view class="count">{{ el.count }}</view>
 				</view>
@@ -37,7 +37,8 @@
 			<view class="item" @click="toCertify">
 				<view><uni-icons type="gift-filled" size="44rpx" color="#545A68"></uni-icons></view>
 				<view class="text">校园认证</view>
-				<view class="right">{{ `未认证` }}<uni-icons type="right" color="#B8B8B8"></uni-icons></view>
+				<view class="right">{{ userInfo.is_certificated ? `认证成功` : `未认证` }}<uni-icons type="right"
+						color="#B8B8B8"></uni-icons></view>
 			</view>
 		</view>
 		<view class="group">
@@ -84,38 +85,48 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-const qc_code = "../../static/images/qc_code.jpg";
+import { ref, onMounted } from "vue";
+import request from "@/utlis/request";
+import { useUserStore } from "../../stores";
+import appData from "../../stores/appData";
+import { onPullDownRefresh } from '@dcloudio/uni-app'
+const qc_code = ref("");
+let count = ref([]);
 
-let count = {
-	"collection_count": 3,
-	"commented_count": 4,
-	"liked_count": 1,
-	"topic_count": 5
+let loadData = async () => {
+	qc_code.value = appData.qc_code
+	let { data: { data } } = await request("/community/my/statistic");
+	count.value = data;
+	count.value = [{
+		text: "帖子",
+		count: data.topic_count,
+		path: `/pages/all/topic/index`
+	}, {
+		text: "点赞",
+		count: data.liked_count,
+		path: `/pages/all/liked/index`
+	}, {
+		text: "评论",
+		count: data.commented_count,
+		path: `/pages/all/commented/index`
+	}, {
+		text: "收藏",
+		count: data.collection_count,
+		path: `/pages/all/collection/index`
+	},]
 }
-let arr = [{
-	text: "帖子",
-	count: count.topic_count,
-	path: ""
-}, {
-	text: "点赞",
-	count: count.liked_count,
-	path: ""
-}, {
-	text: "评论",
-	count: count.commented_count,
-	path: ""
-}, {
-	text: "收藏",
-	count: count.collection_count,
-	path: ""
-},]
+onPullDownRefresh(async () => {
+	await loadData();
+})
 
-let userInfo = {
-	avatar: "http://cos-cdn.xiaoqucloud.com/common/default_avatar/colorball.png",
-	nickname: "小猫6237890kfjjf",
-	id: 9122,
-}
+
+onMounted(async () => {
+	await loadData()
+})
+
+const userStore = useUserStore();
+
+let userInfo = userStore.userInfo.value;
 
 let show = ref(false);
 const close = () => {
@@ -128,7 +139,7 @@ const open = () => {
 const edit = () => {
 	// 
 	uni.navigateTo({
-		url:"/pages/profile/index"
+		url: "/pages/profile/index"
 	})
 	// console.log("跳转到用户资料修改页面");
 }
@@ -149,29 +160,10 @@ const clearCache = () => {
 	});
 }
 
-const toTotal = (index) => {
-	switch (index) {
-		case 0:
-			uni.navigateTo({
-				url: `/pages/all/topic/index`
-			});
-			break;
-		case 1:
-			uni.navigateTo({
-				url: `/pages/all/liked/index`
-			});
-			break;
-		case 2:
-			uni.navigateTo({
-				url: `/pages/all/commented/index`
-			});
-			break;
-		case 3: uni.navigateTo({
-			url: `/pages/all/collection/index`
-		});
-			break;
-
-	}
+const skip = (path) => {
+	uni.navigateTo({
+		url: path
+	});
 }
 
 const toSettings = () => {

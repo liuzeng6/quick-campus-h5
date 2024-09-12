@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/home/index",
     "pages/ranking/index",
     "pages/standard/index",
     "pages/settings/index",
@@ -15,14 +15,14 @@
     "pages/find/index",
     "pages/message/index",
     "components/tabbar/tabbar",
-    "pages/profile/index",
-    "pages/search/index"
+    "pages/profile/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F3F3F3"
+    "backgroundColor": "#F3F3F3",
+    "navigationStyle": "custom"
   },
   "tabBar": {
     "custom": true,
@@ -30,7 +30,7 @@
     "selectedColor": "#5d80e8",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/home/index",
         "text": ""
       },
       {

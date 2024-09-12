@@ -1,12 +1,19 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const useUserStore = common_vendor.defineStore("userStore", () => {
-  const Authorization = "OoPvL6mSXGJ7crsbcYCPBTDI91dK86IN";
+  common_vendor.ref({});
   return {
-    Authorization
+    userInfo: {
+      "id": 1,
+      "nickname": "游客",
+      "avatar": "http://cos-cdn.xiaoqucloud.com/common/default_avatar/colorball.png",
+      "is_certificated": 9999,
+      "name": "游客",
+      "grade": null,
+      "major": null,
+      "wechat": null,
+      "mobile": null
+    }
   };
-}, {
-  // 设置持久化
-  persist: true
-});
+}, {});
 exports.useUserStore = useUserStore;

@@ -1,7 +1,7 @@
 <template>
     <scroll-view :scroll-y="true" id="page">
         <view class="items">
-            <view class="item" v-for="(el, index) in list" @click="toTopic(el.uid)">
+            <view class="item" v-for="(el, index) in list" @click="toTopic(el.tid)">
                 <view class="above">
                     <view class="avatar">
                         <image :src="el.user.avatar"></image>
@@ -12,7 +12,7 @@
                         </view>
                         <view class="flex">
                             <view class="time">
-                                {{ el.createtime }}
+                                {{ toDate(el.createtime * 1000) }}
                             </view>
                             <view class="space">·</view>
                             <view class="msg">
@@ -25,12 +25,12 @@
                     </view>
                 </view>
                 <view class="center">
-                    {{ el.title }}
+                    {{ el.content }}
                 </view>
                 <view class="below">
                     <view class="sign">原帖</view>
                     <view class="content">
-                        {{ el.title }}
+                        {{ el.source_review }}
                     </view>
                 </view>
             </view>
@@ -39,30 +39,27 @@
     </scroll-view>
 </template>
 <script setup>
-const toTopic = (uid) => {
+import { ref, onMounted } from "vue";
+import request from "@/utlis/request";
+import { toDate } from "../../../utlis/time";
+let list = ref([]);
+onMounted(async () => {
+    let { data: { data } } = await request("/community/my/replieds");
+    list.value = data;
+})
+const toTopic = (tid) => {
     uni.navigateTo({
-        url: `/pages/details/index?id=${uid}`
+        url: `/pages/details/index?id=${tid}`
     });
 }
-let list = [
-    {
-        "id": 2,
-        "uid": 2,
-        "cid": 0,
-        "tid": 2,
-        "createtime": 24346,
-        "read": 0,
-        "title": "标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题",
-        "user": {
-            "id": 2,
-            "avatar": "http://cos-cdn.xiaoqucloud.com/common/default_avatar/peach.png",
-            "nickname": "用户二"
-        }
-    }
-];
+
 const reply = (uid) => {
-    // console.log(uid);
-    toTopic(uid);
+    // toTopic(uid);
+    uni.showToast({
+        icon: "none",
+        title: '暂不支持',
+        duration: 2000
+    });
 }
 </script>
 <style scoped lang="scss">
@@ -74,7 +71,9 @@ const reply = (uid) => {
         box-sizing: border-box;
         padding: 15rpx;
         margin-bottom: 20rpx;
+
         .item {
+            margin-bottom: 20rpx;
             box-sizing: border-box;
             border-radius: 15rpx;
             padding: 20rpx;

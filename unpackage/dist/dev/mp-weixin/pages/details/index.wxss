@@ -40,11 +40,12 @@ page.data-v-a45dfdea {
     font-size: 26rpx;
 }
 .content .flex .right .like.data-v-a45dfdea {
-    width: 110rpx;
+    min-width: 110rpx;
     height: 60rpx;
     border-radius: 10rpx;
     color: #919191;
     background-color: #FFFFFF;
+    font-size: 28rpx;
     line-height: 60rpx;
     border: 1px solid #F9F9F9;
     display: flex;
@@ -52,6 +53,21 @@ page.data-v-a45dfdea {
 .content .flex .right .body.data-v-a45dfdea {
     line-height: 50rpx;
     Letter-spacing: 1rpx;
+}
+.content .flex .right .images.data-v-a45dfdea {
+    display: flex;
+    flex-wrap: wrap;
+}
+.content .flex .right .images .item.data-v-a45dfdea {
+    max-width: 200rpx;
+    max-height: 200rpx;
+    min-width: 200rpx;
+    min-height: 200rpx;
+    flex: 1;
+}
+.content .flex .right .images .item image.data-v-a45dfdea {
+    width: 100%;
+    height: 100%;
 }
 .content .flex .right .below.data-v-a45dfdea {
     display: flex;
@@ -77,8 +93,15 @@ page.data-v-a45dfdea {
     display: flex;
     margin-left: 40rpx;
 }
+.content .flex .right .below .btn-group .share.data-v-a45dfdea{
+}
+.content .flex .right .below .btn-group .collect.active .uni-icons.data-v-a45dfdea,
+.content .flex .right .below .btn-group .collect.active.data-v-a45dfdea {
+    color: #E2A169 !important;
+}
+.content .flex .right .like.active .uni-icons.data-v-a45dfdea,
 .content .flex .right .like.active.data-v-a45dfdea {
-    color: #25AFF3;
+    color: #4D71C9 !important;
 }
 .spread.data-v-a45dfdea {
     margin: 15rpx 0rpx;
@@ -203,7 +226,7 @@ page.data-v-a45dfdea {
     background-color: rgba(0, 0, 0, .6);
     height: 280rpx;
 }
-.sidebar view.data-v-a45dfdea{
+.sidebar view.data-v-a45dfdea {
     margin-top: 8rpx;
     flex: 1;
 }

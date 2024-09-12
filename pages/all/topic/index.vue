@@ -1,7 +1,7 @@
 <template>
     <scroll-view :scroll-y="true" id="page">
         <view class="items">
-            <view class="item" v-for="(el, index) in list" @click="toTopic(el.uid)">
+            <view class="item" v-for="(el, index) in list" @click="toTopic(el.id)">
                 <view class="above">
                     <view class="avatar">
                         <image :src="el.user.avatar"></image>
@@ -12,11 +12,11 @@
                         </view>
                         <view class="flex">
                             <view class="time">
-                                {{ el.createtime }}
+                                {{ toDate(el.createtime * 1000) }}
                             </view>
                         </view>
                     </view>
-                    <view class="cancel" @click.stop="remove(el.uid)">
+                    <view class="cancel" @click.stop="remove(el.id)">
                         <uni-icons type="trash" size="26rpx" color="#D8A47A"></uni-icons>删除
                     </view>
                 </view>
@@ -26,11 +26,11 @@
                         <view class="content">{{ el.content }}</view>
                     </view>
                     <view class="below">
-                        <view class="sign">{{ `#吐槽爆料` }}</view>
+                        <view class="sign"># {{ tags.find(item => item.id == el.tag_id)?.tag }}</view>
                         <view class="space"></view>
                         <view class="group">
                             <view><uni-icons type="chat" color="#878787" size="34rpx"></uni-icons> {{
-                                el.comment_number}}
+                                el.comment_number }}
                             </view>
                             <view style="margin-left: 44rpx;"> <uni-icons type="hand-up" size="34rpx"
                                     color="#878787"></uni-icons> {{ el.like_number }} </view>
@@ -43,87 +43,39 @@
     </scroll-view>
 </template>
 <script setup>
-const toTopic = (uid) => {
+import { ref, onMounted } from "vue";
+import request from "@/utlis/request";
+import { timeAgo, toDate } from "../../../utlis/time";
+import appData from "../../../stores/appData";
+let tags = appData.tags;
+let list = ref([]);
+
+onMounted(async () => {
+    await loadData();
+});
+const loadData = async () => {
+    let { data: { data } } = await request("/community/my/topics");
+    list.value = data;
+}
+
+const toTopic = (tid) => {
     uni.navigateTo({
-        url: `/pages/details/index?id=${uid}`
+        url: `/pages/details/index?id=${tid}`
     });
 }
-let list = [
-    {
-        "id": 1,
-        "uid": 1,
-        "title": "长高了",
-        "createtime": "2024-09-07 14:44:28",
-        "content": "不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗",
-        "images": [],
-        "is_block": {
-            "type": "Buffer",
-            "data": [
-                0
-            ]
-        },
-        "like_number": 1,
-        "views": 0,
-        "tag_id": 1,
-        "comment_number": 0,
-        "eid": 0,
-        "user": {
-            "id": 1,
-            "avatar": "http://cos-cdn.xiaoqucloud.com/common/default_avatar/colorball.png",
-            "nickname": "用户一"
-        }
-    },
-    {
-        "id": 1,
-        "uid": 1,
-        "title": "长高了",
-        "createtime": 1723746227,
-        "content": "不要狗叫",
-        "images": [],
-        "is_block": {
-            "type": "Buffer",
-            "data": [
-                0
-            ]
-        },
-        "like_number": 1,
-        "views": 0,
-        "tag_id": 1,
-        "comment_number": 0,
-        "eid": 0,
-        "user": {
-            "id": 1,
-            "avatar": "http://cos-cdn.xiaoqucloud.com/common/default_avatar/colorball.png",
-            "nickname": "用户一"
-        }
-    },
-    {
-        "id": 1,
-        "uid": 1,
-        "title": "长高了",
-        "createtime": 1723746227,
-        "content": "不要狗叫",
-        "images": [],
-        "is_block": {
-            "type": "Buffer",
-            "data": [
-                0
-            ]
-        },
-        "like_number": 1,
-        "views": 0,
-        "tag_id": 1,
-        "comment_number": 0,
-        "eid": 0,
-        "user": {
-            "id": 1,
-            "avatar": "http://cos-cdn.xiaoqucloud.com/common/default_avatar/colorball.png",
-            "nickname": "用户一"
-        }
+const remove = async (tid) => {
+    let res = await uni.showModal({
+        title: '提示',
+        content: '是否要删除改帖子',
+    });
+    if(res.confirm){
+        let { data: { data } } = await request.delete(`/community/my/publish/topics/${tid}`);
+        uni.showToast({
+            title: data,
+            duration: 2000
+        });
+        await loadData();
     }
-]
-const remove = (uid) => {
-    console.log('remove');
 }
 </script>
 <style scoped lang="scss">

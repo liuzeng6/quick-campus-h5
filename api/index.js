@@ -1,12 +1,12 @@
 import request from '@/utlis/request.js'
-
+export const getConfigs = () => request.get('/application/configs')
 /**
  * 根据关键字搜索帖子
  */
 export const getSearch = (keyword) => request.get('/community/search/topics', {
-    params: {
-        keyword,
-    }
+	params: {
+		keyword,
+	}
 });
 
 /**
@@ -22,7 +22,7 @@ export const getTags = () => request.get('/community/tags')
  * 获取所有帖子
  */
 export const getTopiceAll = (pageInfo, tag_id) => {
-	return request.get(`/community/topics`,{
+	return request.get(`/community/topics`, {
 		params: {
 			page: pageInfo.page,
 			pageSize: pageInfo.pageSize,

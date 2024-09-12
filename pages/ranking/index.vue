@@ -6,7 +6,7 @@
           </view>
           <view class="items">
                <view class="item" v-for="(el, index) in list">
-                    hhaha 
+                    hhaha
                </view>
           </view>
      </scroll-view>
@@ -21,6 +21,24 @@ let list = [
 ];
 
 </script>
-<style scoped>
-@import './index.scss';
+<style scoped lang="scss">
+#page {
+     background-color: #fff;
+     height: calc(100vh - 85rpx);
+
+     .title {
+          height: 70rpx;
+          line-height: 70rpx;
+          display: flex;
+          box-sizing: border-box;
+          padding: 0rpx 40rpx;
+          font-size: 26rpx;
+          border-bottom: 1rpx solid #FAFAFA;
+
+          .frequency {
+               flex: 1;
+          }
+
+     }
+}
 </style>

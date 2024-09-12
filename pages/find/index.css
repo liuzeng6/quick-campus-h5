@@ -129,7 +129,10 @@
 
 .popular .list .item .content {
     flex: 1;
-    margin-left: 25rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0rpx 25rpx;
 }
 
 .popular .list .item .space {

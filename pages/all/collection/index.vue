@@ -1,7 +1,7 @@
 <template>
     <scroll-view :scroll-y="true" id="page">
         <view class="items">
-            <view class="item" v-for="(el, index) in list" @click="toTopic(el.uid)">
+            <view class="item" v-for="(el, index) in list" @click="toTopic(el.id)">
                 <view class="above">
                     <view class="avatar">
                         <image :src="el.user.avatar"></image>
@@ -12,11 +12,11 @@
                         </view>
                         <view class="flex">
                             <view class="time">
-                                {{ el.createtime }}
+                                {{ toDate(el.createtime * 1000) }}
                             </view>
                         </view>
                     </view>
-                    <view class="cancel" @click.stop="cancel(el.uid)">
+                    <view class="cancel" @click.stop="cancel(el.id)">
                         <uni-icons type="star" size="26rpx" color="#D8A47A"></uni-icons>取消收藏
                     </view>
                 </view>
@@ -26,7 +26,7 @@
                         <view class="content">{{ el.content }}</view>
                     </view>
                     <view class="below">
-                        <view class="sign">{{ `#吐槽爆料` }}</view>
+                        <view class="sign"># {{ tags.find(item => item.id == el.tag_id)?.tag }}</view>
                         <view class="space"></view>
                         <view class="group">
                             <view><uni-icons type="chat" color="#878787" size="34rpx"></uni-icons></view>
@@ -41,87 +41,47 @@
     </scroll-view>
 </template>
 <script setup>
-const toTopic = (uid) => {
+import { ref, onMounted } from "vue";
+import request from "@/utlis/request";
+import appData from "../../../stores/appData";
+import { toDate } from "../../../utlis/time";
+let list = ref([]);
+let tags = appData.tags;
+const loadData = async () => {
+    let { data: { data } } = await request("/community/my/collect/topics");
+    list.value = data;
+}
+onMounted(async () => {
+    loadData();
+})
+const toTopic = (tid) => {
     uni.navigateTo({
-        url: `/pages/details/index?id=${uid}`
+        url: `/pages/details/index?id=${tid}`
     });
 }
-let list = [
-    {
-        "id": 1,
-        "uid": 1,
-        "title": "长高了",
-        "createtime": "2024-09-07 14:44:28",
-        "content": "不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗叫不要狗",
-        "images": [],
-        "is_block": {
-            "type": "Buffer",
-            "data": [
-                0
-            ]
-        },
-        "like_number": 1,
-        "views": 0,
-        "tag_id": 1,
-        "comment_number": 0,
-        "eid": 0,
-        "user": {
-            "id": 1,
-            "avatar": "http://cos-cdn.xiaoqucloud.com/common/default_avatar/colorball.png",
-            "nickname": "用户一"
-        }
-    },
-    {
-        "id": 1,
-        "uid": 1,
-        "title": "长高了",
-        "createtime": 1723746227,
-        "content": "不要狗叫",
-        "images": [],
-        "is_block": {
-            "type": "Buffer",
-            "data": [
-                0
-            ]
-        },
-        "like_number": 1,
-        "views": 0,
-        "tag_id": 1,
-        "comment_number": 0,
-        "eid": 0,
-        "user": {
-            "id": 1,
-            "avatar": "http://cos-cdn.xiaoqucloud.com/common/default_avatar/colorball.png",
-            "nickname": "用户一"
-        }
-    },
-    {
-        "id": 1,
-        "uid": 1,
-        "title": "长高了",
-        "createtime": 1723746227,
-        "content": "不要狗叫",
-        "images": [],
-        "is_block": {
-            "type": "Buffer",
-            "data": [
-                0
-            ]
-        },
-        "like_number": 1,
-        "views": 0,
-        "tag_id": 1,
-        "comment_number": 0,
-        "eid": 0,
-        "user": {
-            "id": 1,
-            "avatar": "http://cos-cdn.xiaoqucloud.com/common/default_avatar/colorball.png",
-            "nickname": "用户一"
+
+const cancel = async (tid) => {
+    let res = await uni.showModal({
+        title: '提示',
+        content: '是否要取消收藏',
+    });
+    if (res.confirm) {
+        let { data } = await request.delete(`/community/my/collect/topics/${tid}`);
+        if (data?.code == 1) {
+            uni.showToast({
+                title: data.data,
+                duration: 2000
+            });
+            await loadData()
+        } else {
+            uni.showToast({
+                icon: "none",
+                title: data.msg,
+                duration: 2000
+            });
         }
     }
-]
-const cancel = (uid) => {
-    console.log('cancel');
+
 }
 </script>
 <style scoped lang="scss">

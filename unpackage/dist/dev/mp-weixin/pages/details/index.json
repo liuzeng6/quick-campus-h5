@@ -1,10 +1,11 @@
 {
   "navigationBarTitleText": "详情",
-  "enablePullDownRefresh": false,
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "uni-icons": "../../uni_modules/uni-icons/components/uni-icons/uni-icons",
     "up-popup": "../../uni_modules/uview-plus/components/u-popup/u-popup",
     "sort": "./Sort",
-    "comment-list": "./CommentList"
+    "comment-list": "./CommentList",
+    "picture-list": "../../components/pictureList/index"
   }
 }

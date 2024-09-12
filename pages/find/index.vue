@@ -32,7 +32,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="popular">
+		<view class="popular" v-if="!topicList.length">
 			<view class="title">
 				<uni-icons type="fire-filled" size="36rpx" color="#FF2545"></uni-icons>
 				<view style="font-style: italic;font-size: 34rpx;font-weight: 600;margin: 0rpx 16rpx 0rpx 12rpx">热门帖子
@@ -40,7 +40,7 @@
 				<view style="color: #939299;font-style: italic;font-size: 26rpx;margin-top: 5rpx;">大家都在看</view>
 			</view>
 			<view class="list">
-				<view class="item" v-for="(item, index) in hotList" :key="item.id" @click="handleCLick(item.id)">
+				<view class="item" v-for="(item, index) in hotList" :key="item.id" @click="handleCLick(item.tid)">
 					<view :class="index <= 2 ? `color${index}` : 'index'">
 						{{ index + 1 }}
 					</view>
@@ -49,17 +49,17 @@
 				</view>
 			</view>
 		</view>
+		<Topics :topicList="topicList" v-else />
 	</scroll-view>
-
 	<tabbar checkedIndex='1'></tabbar>
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
-import { getSearch } from '../../api';
+import Topics from "../../components/topics/index"
+import { ref, reactive, onMounted } from 'vue'
+import { getSearch, getTopics } from '../../api';
 function debounce(func, wait) {
 	let timeout;
-
 	return function () {
 		let context = this; // 保存this指向
 		let args = arguments; // 拿到event对象
@@ -70,71 +70,18 @@ function debounce(func, wait) {
 		}, wait);
 	}
 }
+onMounted(async () => {
+	let { data: { data } } = await getTopics();
+	hotList.value = data
+})
 
-let hotList = reactive([
-	{
-		"id": 1,
-		"tid": 5,
-		"title": "啊哈哈哈",
-		"score": 6789
-	},
-	{
-		"id": 1,
-		"tid": 5,
-		"title": "啊哈哈哈",
-		"score": 6789
-	},
-	{
-		"id": 1,
-		"tid": 5,
-		"title": "啊哈哈哈",
-		"score": 6789
-	},
-	{
-		"id": 1,
-		"tid": 5,
-		"title": "啊哈哈哈",
-		"score": 6789
-	},
-	{
-		"id": 1,
-		"tid": 5,
-		"title": "啊哈哈哈",
-		"score": 6789
-	},
-	{
-		"id": 1,
-		"tid": 5,
-		"title": "啊哈哈哈",
-		"score": 6789
-	},
-	{
-		"id": 1,
-		"tid": 5,
-		"title": "啊哈哈哈",
-		"score": 6789
-	},
-	{
-		"id": 1,
-		"tid": 5,
-		"title": "啊哈哈哈",
-		"score": 6789
-	},
-	{
-		"id": 1,
-		"tid": 5,
-		"title": "啊哈哈哈",
-		"score": 6789
-	},
-	{
-		"id": 1,
-		"tid": 5,
-		"title": "啊哈哈哈",
-		"score": 6789
-	},
-]);
 
-let searchHistory = reactive(["真的累", "真的累毁了", "真的累", "真的累毁了", "真的累", "真的累毁了真的累毁了真的累毁了真的累毁了真的累毁了", "真的"]);
+let hotList = ref([]);
+
+let topicList = ref([]);
+
+
+let searchHistory = reactive([]);
 function handleCLick(tid) {
 	uni.navigateTo({
 		url: `/pages/details/index?id=${tid}`
@@ -161,12 +108,23 @@ function clear(val) {
 };
 function close() {
 	q.value = "";
+	topicList.value = [];
 }
 let search = debounce(async () => {
 	if (q.value) {
 		searchHistory.unshift(q.value);
 		let { data: { data } } = await getSearch(q.value);
-		console.log(data);
+		if (data.length) {
+			topicList.value = data;
+		} else {
+			uni.showToast({
+				icon: "none",
+				title: '搜索结果为空',
+				duration: 2000
+			});
+		}
+	} else {
+		topicList.value = [];
 	}
 }, 1000)
 let q = ref("");

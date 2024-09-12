@@ -12,7 +12,7 @@
                         </view>
                         <view class="flex">
                             <view class="time">
-                                {{ el.createtime }}
+                                {{ timeAgo(el.createtime * 1000) }}
                             </view>
                             <view class="space">·</view>
                             <view class="msg">
@@ -33,6 +33,9 @@
     </scroll-view>
 </template>
 <script setup>
+import appData from "../../stores/appData";
+import { timeAgo } from "../../utlis/time"
+let tags = appData.tags;
 const toTopic = (uid) => {
     uni.navigateTo({
         url: `/pages/details/index?id=${uid}`
