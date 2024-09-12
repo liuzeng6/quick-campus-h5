@@ -1,14 +1,30 @@
 <template>
-    <view>
-        浏览器访问地址
-    </view>
-    <view style="font-size: 24rpx;">
-        <text selectable>{{ `https://cymmc.top/?openid=${openid}` }}</text>
-    </view>
+	<view class="box">
+		<up-cell-group>
+			<up-cell v-for="el in list" :icon="el.icon" :title="el.title" :isLink="true"></up-cell>
+		</up-cell-group>
+	</view>
 </template>
 <script setup>
-import appData from '../../stores/appData';
+import { ref } from 'vue';
 
-let openid = appData.openid
+const list = ref([
+	{
+		title: '设置1',
+		icon: 'setting-fill'
+	},
+	{
+		title: '设置2',
+		icon: 'integral-fill'
+	},
+	{
+		title: '设置3',
+		icon: 'integral-fill'
+	}
+]);
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.box {
+	background-color: #fff;
+}
+</style>

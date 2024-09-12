@@ -3,9 +3,9 @@ import {
   __toESM
 } from "./chunk-LQ2VYIYD.js";
 
-// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/helpers/bind.js
+// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/helpers/bind.js
 var require_bind = __commonJS({
-  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/helpers/bind.js"(exports, module) {
+  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/helpers/bind.js"(exports, module) {
     "use strict";
     module.exports = function bind(fn, thisArg) {
       return function wrap() {
@@ -19,9 +19,9 @@ var require_bind = __commonJS({
   }
 });
 
-// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/utils.js
+// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/utils.js
 var require_utils = __commonJS({
-  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/utils.js"(exports, module) {
+  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/utils.js"(exports, module) {
     "use strict";
     var bind = require_bind();
     var toString = Object.prototype.toString;
@@ -170,9 +170,9 @@ var require_utils = __commonJS({
   }
 });
 
-// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/core/enhanceError.js
+// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/core/enhanceError.js
 var require_enhanceError = __commonJS({
-  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/core/enhanceError.js"(exports, module) {
+  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/core/enhanceError.js"(exports, module) {
     "use strict";
     module.exports = function enhanceError(error, config, code, request, response) {
       error.config = config;
@@ -205,9 +205,9 @@ var require_enhanceError = __commonJS({
   }
 });
 
-// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/core/createError.js
+// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/core/createError.js
 var require_createError = __commonJS({
-  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/core/createError.js"(exports, module) {
+  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/core/createError.js"(exports, module) {
     "use strict";
     var enhanceError = require_enhanceError();
     module.exports = function createError2(message, config, code, request, response) {
@@ -217,9 +217,9 @@ var require_createError = __commonJS({
   }
 });
 
-// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/core/settle.js
+// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/core/settle.js
 var require_settle = __commonJS({
-  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/core/settle.js"(exports, module) {
+  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/core/settle.js"(exports, module) {
     "use strict";
     var createError2 = require_createError();
     module.exports = function settle2(resolve, reject, response) {
@@ -239,9 +239,9 @@ var require_settle = __commonJS({
   }
 });
 
-// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/helpers/buildURL.js
+// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/helpers/buildURL.js
 var require_buildURL = __commonJS({
-  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/helpers/buildURL.js"(exports, module) {
+  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/helpers/buildURL.js"(exports, module) {
     "use strict";
     var utils2 = require_utils();
     function encode(val) {
@@ -290,9 +290,9 @@ var require_buildURL = __commonJS({
   }
 });
 
-// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/helpers/isAbsoluteURL.js
+// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/helpers/isAbsoluteURL.js
 var require_isAbsoluteURL = __commonJS({
-  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/helpers/isAbsoluteURL.js"(exports, module) {
+  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/helpers/isAbsoluteURL.js"(exports, module) {
     "use strict";
     module.exports = function isAbsoluteURL(url) {
       return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
@@ -300,9 +300,9 @@ var require_isAbsoluteURL = __commonJS({
   }
 });
 
-// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/helpers/combineURLs.js
+// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/helpers/combineURLs.js
 var require_combineURLs = __commonJS({
-  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/helpers/combineURLs.js"(exports, module) {
+  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/helpers/combineURLs.js"(exports, module) {
     "use strict";
     module.exports = function combineURLs(baseURL, relativeURL) {
       return relativeURL ? baseURL.replace(/\/+$/, "") + "/" + relativeURL.replace(/^\/+/, "") : baseURL;
@@ -310,9 +310,9 @@ var require_combineURLs = __commonJS({
   }
 });
 
-// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/core/buildFullPath.js
+// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/core/buildFullPath.js
 var require_buildFullPath = __commonJS({
-  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/core/buildFullPath.js"(exports, module) {
+  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/node_modules/axios/lib/core/buildFullPath.js"(exports, module) {
     "use strict";
     var isAbsoluteURL = require_isAbsoluteURL();
     var combineURLs = require_combineURLs();
@@ -325,7 +325,7 @@ var require_buildFullPath = __commonJS({
   }
 });
 
-// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios-miniprogram-adapter/dist/index.esm.js
+// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios-miniprogram-adapter/dist/index.esm.js
 var import_utils = __toESM(require_utils());
 var import_settle = __toESM(require_settle());
 var import_buildURL = __toESM(require_buildURL());
