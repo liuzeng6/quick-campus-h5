@@ -67,6 +67,7 @@ page {
 .content .flex .right .body {
     line-height: 50rpx;
     Letter-spacing: 1rpx;
+	font-size: 28rpx;
 }
 
 .content .flex .right .images {

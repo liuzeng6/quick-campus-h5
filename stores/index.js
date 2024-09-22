@@ -7,3 +7,4 @@ const pinai = createPinia()
 export default pinai
 
 export * from './modules/user.js'
+export * from "./modules/config.js";

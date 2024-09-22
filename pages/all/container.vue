@@ -33,7 +33,9 @@
     </scroll-view>
 </template>
 <script setup>
-import appData from "../../stores/appData";
+// import appData from "../../stores/appData";
+import { useAppDataStore } from "@/stores";
+const appData = useAppDataStore().config
 import { timeAgo } from "../../utlis/time"
 let tags = appData.tags;
 const toTopic = (uid) => {

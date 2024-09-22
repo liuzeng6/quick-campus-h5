@@ -1,7 +1,8 @@
 <template>
     <view id="page">
         <view class="items">
-            <button open-type="chooseAvatar" :plain="true" style="border: none;box-sizing: border-box;" class="item" @click="clickAvatar" @chooseavatar="changeAvatar">
+            <button open-type="chooseAvatar" :plain="true" style="border: none;box-sizing: border-box;" class="item"
+                @click="clickAvatar" @chooseavatar="changeAvatar">
                 <view class="text" style="text-align: left;">头像</view>
                 <view class="avatar">
                     <image :src="userInfo.avatar"></image>
@@ -10,7 +11,7 @@
                     <uni-icons type="right" size="30rpx" color="#909090"></uni-icons>
                 </view>
             </button>
-            <button :plain="true" style="border: none;box-sizing: border-box;" class="item">
+            <view class="item" style="margin:0rpx 25rpx;">
                 <view class="text">昵称</view>
                 <view class="nickname">
                     <input type="nickname" maxlength="16" v-model="userInfo.nickname" @click="changeNickname">
@@ -18,7 +19,7 @@
                 <view class="arrow">
                     <uni-icons type="right" size="30rpx" color="#909090"></uni-icons>
                 </view>
-            </button>
+            </view>
         </view>
         <button class="save" @click="save" :dis="disabled">
             保存

@@ -28,7 +28,6 @@
 <script setup>
 import { ref, defineProps, onMounted } from 'vue'
 import { getTags } from '../../api/index.js'
-import appData from '../../stores/appData.js';
 
 const props = defineProps({
 	checkedIndex: {
@@ -47,7 +46,7 @@ const barList = ref([
 ])
 
 onMounted(() => {
-	getTagList()
+	getTagList();
 })
 
 const toRelease = (id) => {
@@ -59,14 +58,19 @@ const toRelease = (id) => {
  * 获取标签
  */
 const getTagList = async () => {
-	// const res = await getTags()
-	tags.value = appData.tags.filter(el=>el.enable)
+	
+	try {
+		const { data:{data:res} } = await getTags();
+		tags.value = res.filter(el => el.enable);
+	} catch (e) {
+		console.log("错误",e);
+
+	}
 }
 /**
  * 设置tabbar点击效果
  */
 const checkedBar = index => {
-	// checked.value = index
 	if (index === 2) {
 		show.value = true
 	} else {
@@ -86,6 +90,8 @@ const checkedBar = index => {
 	position: fixed;
 	bottom: 0rpx;
 	background-color: #fff;
+	padding-bottom: constant(safe-area-inset-bottom);
+	padding-bottom: env(safe-area-inset-bottom);
 }
 
 .bar-wrap {

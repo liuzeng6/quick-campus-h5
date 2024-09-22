@@ -6,7 +6,6 @@
     </view>
 </template>
 <script setup>
-import appData from '../../stores/appData';
 import { preview, loadImage } from '../../utlis/image';
 const props = defineProps({
     images: {

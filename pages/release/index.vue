@@ -7,7 +7,7 @@
             <view :class="content.length ? 'count' : 'count hidden'">{{ content.length }} / 800</view>
             <view class="images">
                 <view class="item" v-for="(el, index) in images">
-                    <image :src="loadImage(el,true)" mode="scaleToFill" @click="preview(loadImage(images))"></image>
+                    <image :src="loadImage(el, true)" mode="scaleToFill" @click="preview(loadImage(images))"></image>
                     <view class="remove" @click.stop="remove(index)">
                         ×
                     </view>
@@ -48,9 +48,10 @@
 import { ref } from "vue";
 import { onLoad } from '@dcloudio/uni-app'
 import request from "../../utlis/request.js";
-import appData from "@/stores/appData.js";
+import { getTags } from "../../api/index.js";
 import { preview, loadImage } from '../../utlis/image';
 import uniUploadFile from "@/utlis/uniUploadFile.js";
+import { useAppDataStore } from "@/stores";
 
 let tags = ref([]);
 let tag_id = ref(1);
@@ -64,8 +65,8 @@ let status = 0;
 
 onLoad(async (options) => {
     tag_id.value = options.mode || 1;
-    // let { data: { data } } = await getTags();
-    tags.value = appData.tags;
+    const { data: { data: res } } = await getTags();
+    tags.value = res.filter(el => el.enable);
 })
 const promote = (index) => {
     uni.showToast({

@@ -46,7 +46,9 @@
 import { ref, onMounted } from "vue";
 import request from "@/utlis/request";
 import { timeAgo, toDate } from "../../../utlis/time";
-import appData from "../../../stores/appData";
+// import appData from "../../../stores/appData";
+import { useAppDataStore } from "@/stores";
+const appData = useAppDataStore().config
 let tags = appData.tags;
 let list = ref([]);
 

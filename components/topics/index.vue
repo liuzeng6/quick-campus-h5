@@ -25,7 +25,7 @@
                 </view>
                 <PictureList :images="el.images" />
                 <view class="below">
-                    <view class="sign"># {{ tags.find(item => item.id == el.tag_id)?.tag }}</view>
+                    <view class="sign"># {{ appData.tags.find(item => item.id == el.tag_id)?.tag }}</view>
                     <view class="space"></view>
                     <view class="group">
                         <view><uni-icons type="chat" color="#878787" size="34rpx"></uni-icons> {{ el.comment_number
@@ -42,16 +42,14 @@
 import { timeAgo } from "../../utlis/time"
 import { ref, onMounted } from 'vue';
 import PictureList from "../../components/pictureList";
-import appData from "../../stores/appData";
+import { useAppDataStore } from "@/stores";
+
+const appData = useAppDataStore().config;
 const props = defineProps({
     topicList: {
         type: Array,
         required: true
     }
-});
-const tags = ref([]);
-onMounted(async () => {
-    tags.value = appData.tags;
 });
 const toDetail = (tid) => {
     uni.navigateTo({

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import mpAdapter from 'axios-miniprogram-adapter'
-import appData from '../stores/appData.js'
+import appConfig from "./config.js"
 
 const baseURL = process.env.NODE_ENV == "development" ? 'http://localhost:3000' : "https://cymmc.top:3000";
 
@@ -13,11 +13,11 @@ const instance = axios.create({
 // 添加请求拦截器
 instance.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
-  if (appData.openid) {
-    config.headers.Authorization = appData.openid;
+  if (appConfig.openid) {
+    config.headers.Authorization = appConfig.openid;
   } else {
     console.log("没有值");
-    if (!appData.auth) {
+    if (!appConfig.auth) {
       config.headers.Authorization = 'OoPvL6mSXGJ7crsbcYCPBTDI91dK86IN';
     }
   }

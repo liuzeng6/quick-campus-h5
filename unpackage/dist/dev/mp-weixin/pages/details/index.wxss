@@ -53,6 +53,7 @@ page.data-v-a45dfdea {
 .content .flex .right .body.data-v-a45dfdea {
     line-height: 50rpx;
     Letter-spacing: 1rpx;
+	font-size: 28rpx;
 }
 .content .flex .right .images.data-v-a45dfdea {
     display: flex;

@@ -4,6 +4,7 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "uni-icons": "../../uni_modules/uni-icons/components/uni-icons/uni-icons",
+    "up-empty": "../../uni_modules/uview-plus/components/u-empty/u-empty",
     "tabbar": "../../components/tabbar/tabbar"
   }
 }

@@ -2,9 +2,10 @@
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 const common_vendor = require("./common/vendor.js");
 const stores_index = require("./stores/index.js");
-const stores_appData = require("./stores/appData.js");
 const api_index = require("./api/index.js");
+const utlis_config = require("./utlis/config.js");
 const stores_modules_user = require("./stores/modules/user.js");
+const stores_modules_config = require("./stores/modules/config.js");
 const uni_modules_uviewPlus_index = require("./uni_modules/uview-plus/index.js");
 if (!Math) {
   "./pages/home/index.js";
@@ -75,7 +76,9 @@ const _sfc_main = {
         });
       });
     };
+    const appData = stores_modules_config.useAppDataStore().config;
     common_vendor.onLaunch(async () => {
+      console.log(common_vendor.index.getSystemInfoSync().platform);
       try {
         let token = common_vendor.index.getStorageSync("openid");
         let flag = false;
@@ -86,7 +89,7 @@ const _sfc_main = {
           flag = true;
           openid = await login();
         }
-        stores_appData.appData.openid = openid;
+        utlis_config.appConfig.openid = openid;
         const instance = common_vendor.axios.create({
           baseURL,
           timeout: 5e3,
@@ -112,12 +115,12 @@ const _sfc_main = {
           duration: 2e3
         });
       } finally {
-        stores_appData.appData.auth = true;
         let { data: { data } } = await api_index.getTags();
-        stores_appData.appData.tags = data;
+        appData.tags = data;
         let { data: { data: configs } } = await api_index.getConfigs();
-        stores_appData.appData.spread = configs.spread;
-        stores_appData.appData.qc_code = configs.qc_code;
+        appData.spread = configs.spread;
+        appData.qc_code = configs.qc_code;
+        utlis_config.appConfig.auth = true;
       }
     });
     return (_ctx, _cache) => {

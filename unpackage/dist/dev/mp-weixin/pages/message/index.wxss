@@ -24,7 +24,7 @@
 /* 透明度 */
 /* 文章场景相关 */
 #page.data-v-780fc0ad {
-  background-color: #F4F5F7;
+  background-color: #f4f5f7;
 }
 #page .container.data-v-780fc0ad {
   min-height: calc(100vh - 85rpx - 100rpx);
@@ -39,9 +39,9 @@
 }
 #page .container .group-btn .item.data-v-780fc0ad {
   border-radius: 10rpx;
-  border: 1px solid #E7E8EA;
+  border: 1px solid #e7e8ea;
   width: 325rpx;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   line-height: 100rpx;
   height: 100rpx;
   display: flex;
@@ -59,6 +59,13 @@
 }
 #page .container .message-list.data-v-780fc0ad {
   flex: 1;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 30rpx 30rpx 0rpx 0rpx;
+  position: relative;
+}
+#page .container .message-list .empty.data-v-780fc0ad {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
 }

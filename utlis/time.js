@@ -29,7 +29,7 @@ export function timeAgo(timestamp) {
         return `${hours} 小时前`;
     } else if (minutes > 0) {
         return `${minutes} 分钟前`;
-    } else if (seconds >= 0) {
+    } else if (seconds >= 5) {
         return `${seconds} 秒前`;
     } else {
         // 理论上这里不应该执行，除非时间戳是未来的时间  

@@ -6,7 +6,7 @@
 			</view>
 			<view class="bg">
 				<view class="picture">
-					<image :src="qc_code" style="width: 190rpx;height: 190rpx;margin-top: 40rpx;margin-left: 40rpx;">
+					<image :src="appData.qc_code" style="width: 190rpx;height: 190rpx;margin-top: 40rpx;margin-left: 40rpx;">
 					</image>
 				</view>
 			</view>
@@ -88,13 +88,12 @@
 import { ref, onMounted } from "vue";
 import request from "@/utlis/request";
 import { useUserStore } from "../../stores";
-import appData from "../../stores/appData";
 import { onPullDownRefresh } from '@dcloudio/uni-app'
-const qc_code = ref("");
+import { useAppDataStore } from "@/stores";
+const appData = useAppDataStore().config
 let count = ref([]);
 
 let loadData = async () => {
-	qc_code.value = appData.qc_code
 	let { data: { data } } = await request("/community/my/statistic");
 	count.value = data;
 	count.value = [{
@@ -117,6 +116,7 @@ let loadData = async () => {
 }
 onPullDownRefresh(async () => {
 	await loadData();
+	uni.stopPullDownRefresh();
 })
 
 
@@ -184,7 +184,8 @@ const toCertify = () => {
 }
 
 const share = () => {
-	console.log('分享');
+	// console.log('分享');
+	open();
 }
 
 </script>

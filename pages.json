@@ -13,8 +13,7 @@
 			"style": {
 				"navigationBarTitleText": "一键校园",
 				"navigationBarBackgroundColor": "#F3F3F3",
-				"enablePullDownRefresh": true,
-				"onReachBottomDistance": 0
+				"enablePullDownRefresh": true
 			}
 		},
 		{
@@ -150,8 +149,9 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F3F3F3",
-		"navigationStyle": "custom"
+		"backgroundColor": "#F3F3F3"
+		// ,
+		// "navigationStyle": "custom"
 	},
 	"uniIdRouter": {}
 }

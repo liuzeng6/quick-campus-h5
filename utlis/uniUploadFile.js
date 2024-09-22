@@ -1,4 +1,5 @@
-import appData from "../stores/appData";
+import { useAppDataStore } from "@/stores";
+const appData = useAppDataStore().config
 import { baseURL } from "./request";
 
 

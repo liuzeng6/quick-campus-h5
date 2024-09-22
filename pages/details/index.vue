@@ -58,7 +58,7 @@
             </view>
             <view class="spread">
                 <swiper circular indicator-dots>
-                    <swiper-item v-for="item in spread" @click="skip(item.url)">
+                    <swiper-item v-for="item in appData.spread" @click="skip(item.url)">
                         <image :src="item.image" style="width: 750rpx;height: 250rpx;"></image>
                     </swiper-item>
                 </swiper>
@@ -69,7 +69,7 @@
                     <view class="space"></view>
                     <Sort :mode="mode" @change="change"></Sort>
                 </view>
-                <CommentList @open="open" :cList="cList" :tid="topicsData.id"></CommentList>
+                <CommentList @open="open" :cList="cList" :uid="topicsData.uid"></CommentList>
                 <view class="below">
                     <!-- <view class="nomore">
                         没有更多评论了~
@@ -129,8 +129,9 @@ import { reactive, ref, toRaw } from 'vue';
 import CommentList from "./CommentList.vue"
 import request from "../../utlis/request";
 import PictureList from "../../components/pictureList/index"
-import appData from "../../stores/appData";
 import { onPullDownRefresh } from '@dcloudio/uni-app'
+import { useAppDataStore } from "@/stores";
+const appData = useAppDataStore().config;
 
 const like = async (flag) => {
     let tid = topicsData.value.id;
@@ -174,7 +175,6 @@ const skip = (url) => {
 }
 const mode = ref(1);
 const images = ref([]);
-const spread = ref([]);
 let id = 0;
 
 const navigator = (url, type) => {
@@ -206,7 +206,6 @@ const loadData = async () => {
     let { data: { data } } = await request(`/community/topics/${id}`);
     topicsData.value = data;
     images.value = data.images;
-    spread.value = appData.spread;
 }
 onLoad(async (options) => {
     try {
@@ -223,8 +222,9 @@ onLoad(async (options) => {
 });
 
 onPullDownRefresh(async () => {
-    loadData();
-    getCommentData(1)
+    await loadData();
+    await getCommentData(1);
+    uni.stopPullDownRefresh();
 })
 let content = ref("");
 // 评论内容

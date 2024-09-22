@@ -1,16 +1,19 @@
 <template></template>
 <script setup>
+
 import { onLaunch } from '@dcloudio/uni-app'
-import { useUserStore } from './stores';
+import { useAppDataStore, useUserStore } from './stores';
 import axios from 'axios'
 import mpAdapter from 'axios-miniprogram-adapter'
-import appData from './stores/appData';
+
 import { getConfigs, getTags } from './api';
+
+import appConfig from './utlis/config';
+import getUrlParam from './utlis/getUrlParam';
 
 const userStore = useUserStore();
 
 const baseURL = process.env.NODE_ENV == "development" ? 'http://localhost:3000' : "https://cymmc.top:3000";
-
 
 
 const login = () => {
@@ -37,11 +40,12 @@ const login = () => {
 					resolve(localStorage.openid);
 				} else {
 					try {
-						let input = location.search.substring(8);
-						if (input) {
-							instance(`/weixin/oauth?code=${input}`).then(({ data }) => {
+						let openid = getUrlParam(location.href, "openid");
+
+						if (openid) {
+							instance(`/weixin/oauth?code=${openid}`).then(({ data }) => {
 								if (data.code == 1) {
-									resolve(input);
+									resolve(openid);
 								} else {
 									reject(err);
 								}
@@ -61,6 +65,7 @@ const login = () => {
 	})
 }
 
+const appData = useAppDataStore().config;
 onLaunch(async () => {
 	try {
 		let token = uni.getStorageSync('openid');
@@ -73,7 +78,7 @@ onLaunch(async () => {
 			flag = true;
 			openid = await login();
 		}
-		appData.openid = openid;
+		appConfig.openid = openid;
 
 		const instance = axios.create({
 			baseURL,
@@ -103,16 +108,14 @@ onLaunch(async () => {
 		});
 	}
 	finally {
-		appData.auth = true;
 		let { data: { data } } = await getTags();
 		appData.tags = data;
 		let { data: { data: configs } } = await getConfigs();
 		// console.log(configs);
 		appData.spread = configs.spread;
 		appData.qc_code = configs.qc_code;
+		appConfig.auth = true;
 	}
-
-
 })
 
 </script>

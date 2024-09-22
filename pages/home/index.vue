@@ -9,21 +9,20 @@
             </view>
         </view>
         <view class="ranking">
-            <view class="sgin">
+            <view class="sgin" @click="toRanking">
                 <image src="../../static/images/hot.png"></image>
             </view>
             <swiper class="list" :indicator-dots='false' autoplay :interval='5000' circular :vertical='true'
                 :duration='800'>
                 <swiper-item v-for="(item, index) in hotTopicList" style="height: 88rpx;" class="item" :key="item.id"
                     @click="toDetail(item.tid)">
-                    <view class="index">{{ index + 1 }}</view>
-                    <view class="hot-title">{{ item.title }}</view>
+                    <view class="hot-title"><text style="margin-right: 10rpx;">{{ index + 1 }} </text> {{ item.title }}</view>
                 </swiper-item>
             </swiper>
         </view>
         <view class="title">
             <view :class="checked == -1 ? 'item active' : 'item'" @click="changeMode(-1)">全部</view>
-            <view :class="index == checked ? 'item active' : 'item'" v-for="(el, index) in tags"
+            <view :class="index == checked ? 'item active' : 'item'" v-for="(el, index) in appData.tags"
                 @click="changeMode(index)">
                 {{ el.tag }}
             </view>
@@ -35,14 +34,16 @@
 <script setup>
 import Topics from "@/components/topics/index"
 import { ref, onMounted } from "vue";
-import { getTags, getTopiceAll, getTopics } from "../../api";
+import { getTopiceAll, getTopics } from "../../api";
 import { onPullDownRefresh, onReachBottom, onLoad } from '@dcloudio/uni-app'
 import request from '@/utlis/request.js'
-import appData from "../../stores/appData";
+import { useAppDataStore } from "@/stores";
+const appData = useAppDataStore().config;
+
 onReachBottom(async () => {
     let tag_id = checked.value == -1 ? undefined : checked.value;
     console.log(pageInfo);
-    
+
     pageInfo.page += 1;
     const { data: { data: list } } = await getTopiceAll(pageInfo, tag_id);
     if (list.length) {
@@ -71,11 +72,11 @@ const toDetail = (tid) => {
 
 onPullDownRefresh(async () => {
     pageInfo.page = 1;
-    const { data: { data: list } } = await getTopiceAll(pageInfo);
+    const { data: { data: list } } = await getTopiceAll(pageInfo, checked.value == -1 ? undefined : appData.tags[checked.value]?.id);
     topicList.value = list;
+    uni.stopPullDownRefresh();
 })
 let shortcut = ref([]);
-let tags = ref([]);
 const checked = ref(-1);
 const topicList = ref([]);
 let pageInfo = {
@@ -86,24 +87,27 @@ const hotTopicList = ref([]);
 onMounted(async () => {
     let { data: { data } } = await request('/application/tools');
     shortcut.value = data;
-    let { data: { data: tagList } } = await getTags();
-    tags.value = tagList;
-    appData.tags = tagList;
+
     const { data: { data: list } } = await getTopiceAll(pageInfo);
     topicList.value = list;
     const { data: { data: arr } } = await getTopics();
-    // console.log(arr);
     hotTopicList.value = arr;
 })
 
 const changeMode = async (index) => {
-    let tag_id = tags.value[index]?.id;
-    if (index != tag_id) {
+    let tag_id = appData.tags[index]?.id;
+    if (index != checked.value) {
         pageInfo.page = 1;
         checked.value = index;
         const { data: { data: list } } = await getTopiceAll(pageInfo, tag_id);
         topicList.value = list;
     }
+}
+
+const toRanking = ()=>{
+    uni.navigateTo({
+         url: "/pages/ranking/index"
+    });
 }
 
 const skip = (appid, path) => {
@@ -183,8 +187,12 @@ const skip = (appid, path) => {
             margin-left: 20rpx;
 
             .item {
+                box-sizing: border-box;
+                padding: 0rpx 20rpx;
+                font-weight: 700;
                 display: flex;
-                line-height: 44rpx;
+                align-items: center;
+                // line-height: 44rpx;
                 font-size: 28rpx;
                 height: 88rpx;
 
@@ -225,7 +233,7 @@ const skip = (appid, path) => {
         .item.active {
             color: #181818;
             font-size: 28rpx;
-            font-weight: 600;
+            font-weight: 700;
         }
     }
 

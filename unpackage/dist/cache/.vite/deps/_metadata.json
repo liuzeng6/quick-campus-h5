@@ -1,37 +1,31 @@
 {
-  "hash": "a2d4a680",
-  "configHash": "15d66ba7",
+  "hash": "fe8f46ca",
+  "configHash": "1e9b8622",
   "lockfileHash": "61aab087",
-  "browserHash": "a4e0c305",
+  "browserHash": "5b76ddcc",
   "optimized": {
-    "pinia-plugin-persistedstate": {
-      "src": "../../../../../node_modules/pinia-plugin-persistedstate/dist/index.js",
-      "file": "pinia-plugin-persistedstate.js",
-      "fileHash": "88aa11dd",
-      "needsInterop": false
-    },
-    "dayjs/esm/index": {
-      "src": "../../../../../node_modules/dayjs/esm/index.js",
-      "file": "dayjs_esm_index.js",
-      "fileHash": "01a316bd",
-      "needsInterop": false
-    },
     "axios": {
       "src": "../../../../../node_modules/axios/index.js",
       "file": "axios.js",
-      "fileHash": "f10e9a5d",
+      "fileHash": "4e15980d",
       "needsInterop": true
     },
     "axios-miniprogram-adapter": {
       "src": "../../../../../node_modules/axios-miniprogram-adapter/dist/index.esm.js",
       "file": "axios-miniprogram-adapter.js",
-      "fileHash": "22d5090e",
+      "fileHash": "b2f709ba",
       "needsInterop": false
     },
-    "cors": {
-      "src": "../../../../../../../../node_modules/cors/lib/index.js",
-      "file": "cors.js",
-      "fileHash": "bc0735f6",
+    "dayjs/esm/index": {
+      "src": "../../../../../node_modules/dayjs/esm/index.js",
+      "file": "dayjs_esm_index.js",
+      "fileHash": "f8d566ca",
+      "needsInterop": false
+    },
+    "react": {
+      "src": "../../../../../../../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "75a7ce46",
       "needsInterop": true
     }
   },

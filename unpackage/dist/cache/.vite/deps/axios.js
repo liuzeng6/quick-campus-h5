@@ -2,9 +2,9 @@ import {
   __commonJS
 } from "./chunk-LQ2VYIYD.js";
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/bind.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/bind.js
 var require_bind = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/bind.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/bind.js"(exports, module) {
     "use strict";
     module.exports = function bind(fn, thisArg) {
       return function wrap() {
@@ -18,9 +18,9 @@ var require_bind = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/utils.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/utils.js
 var require_utils = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/utils.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/utils.js"(exports, module) {
     "use strict";
     var bind = require_bind();
     var toString = Object.prototype.toString;
@@ -171,9 +171,9 @@ var require_utils = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/buildURL.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/buildURL.js
 var require_buildURL = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/buildURL.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/buildURL.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     function encode(val) {
@@ -222,9 +222,9 @@ var require_buildURL = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/InterceptorManager.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/InterceptorManager.js
 var require_InterceptorManager = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/InterceptorManager.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/InterceptorManager.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     function InterceptorManager() {
@@ -255,9 +255,9 @@ var require_InterceptorManager = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/normalizeHeaderName.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/normalizeHeaderName.js
 var require_normalizeHeaderName = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/normalizeHeaderName.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/normalizeHeaderName.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     module.exports = function normalizeHeaderName(headers, normalizedName) {
@@ -271,9 +271,9 @@ var require_normalizeHeaderName = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/enhanceError.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/enhanceError.js
 var require_enhanceError = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/enhanceError.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/enhanceError.js"(exports, module) {
     "use strict";
     module.exports = function enhanceError(error, config, code, request, response) {
       error.config = config;
@@ -307,9 +307,9 @@ var require_enhanceError = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/createError.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/createError.js
 var require_createError = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/createError.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/createError.js"(exports, module) {
     "use strict";
     var enhanceError = require_enhanceError();
     module.exports = function createError(message, config, code, request, response) {
@@ -319,9 +319,9 @@ var require_createError = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/settle.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/settle.js
 var require_settle = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/settle.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/settle.js"(exports, module) {
     "use strict";
     var createError = require_createError();
     module.exports = function settle(resolve, reject, response) {
@@ -341,9 +341,9 @@ var require_settle = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/cookies.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/cookies.js
 var require_cookies = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/cookies.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/cookies.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     module.exports = utils.isStandardBrowserEnv() ? (
@@ -393,9 +393,9 @@ var require_cookies = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/isAbsoluteURL.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/isAbsoluteURL.js
 var require_isAbsoluteURL = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/isAbsoluteURL.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/isAbsoluteURL.js"(exports, module) {
     "use strict";
     module.exports = function isAbsoluteURL(url) {
       return /^([a-z][a-z\d+\-.]*:)?\/\//i.test(url);
@@ -403,9 +403,9 @@ var require_isAbsoluteURL = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/combineURLs.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/combineURLs.js
 var require_combineURLs = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/combineURLs.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/combineURLs.js"(exports, module) {
     "use strict";
     module.exports = function combineURLs(baseURL, relativeURL) {
       return relativeURL ? baseURL.replace(/\/+$/, "") + "/" + relativeURL.replace(/^\/+/, "") : baseURL;
@@ -413,9 +413,9 @@ var require_combineURLs = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/buildFullPath.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/buildFullPath.js
 var require_buildFullPath = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/buildFullPath.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/buildFullPath.js"(exports, module) {
     "use strict";
     var isAbsoluteURL = require_isAbsoluteURL();
     var combineURLs = require_combineURLs();
@@ -428,9 +428,9 @@ var require_buildFullPath = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/parseHeaders.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/parseHeaders.js
 var require_parseHeaders = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/parseHeaders.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/parseHeaders.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     var ignoreDuplicateOf = [
@@ -480,9 +480,9 @@ var require_parseHeaders = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/isURLSameOrigin.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/isURLSameOrigin.js
 var require_isURLSameOrigin = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/isURLSameOrigin.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/isURLSameOrigin.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     module.exports = utils.isStandardBrowserEnv() ? (
@@ -527,9 +527,9 @@ var require_isURLSameOrigin = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/cancel/Cancel.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/cancel/Cancel.js
 var require_Cancel = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/cancel/Cancel.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/cancel/Cancel.js"(exports, module) {
     "use strict";
     function Cancel(message) {
       this.message = message;
@@ -542,9 +542,9 @@ var require_Cancel = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/adapters/xhr.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/adapters/xhr.js
 var require_xhr = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/adapters/xhr.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/adapters/xhr.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     var settle = require_settle();
@@ -693,9 +693,9 @@ var require_xhr = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/defaults.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/defaults.js
 var require_defaults = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/defaults.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/defaults.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     var normalizeHeaderName = require_normalizeHeaderName();
@@ -803,9 +803,9 @@ var require_defaults = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/transformData.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/transformData.js
 var require_transformData = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/transformData.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/transformData.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     var defaults = require_defaults();
@@ -819,9 +819,9 @@ var require_transformData = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/cancel/isCancel.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/cancel/isCancel.js
 var require_isCancel = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/cancel/isCancel.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/cancel/isCancel.js"(exports, module) {
     "use strict";
     module.exports = function isCancel(value) {
       return !!(value && value.__CANCEL__);
@@ -829,9 +829,9 @@ var require_isCancel = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/dispatchRequest.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/dispatchRequest.js
 var require_dispatchRequest = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/dispatchRequest.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/dispatchRequest.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     var transformData = require_transformData();
@@ -894,9 +894,9 @@ var require_dispatchRequest = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/mergeConfig.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/mergeConfig.js
 var require_mergeConfig = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/mergeConfig.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/mergeConfig.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     module.exports = function mergeConfig(config1, config2) {
@@ -976,18 +976,18 @@ var require_mergeConfig = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/env/data.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/env/data.js
 var require_data = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/env/data.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/env/data.js"(exports, module) {
     module.exports = {
       "version": "0.26.0"
     };
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/validator.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/validator.js
 var require_validator = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/validator.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/validator.js"(exports, module) {
     "use strict";
     var VERSION = require_data().version;
     var validators = {};
@@ -1046,9 +1046,9 @@ var require_validator = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/Axios.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/Axios.js
 var require_Axios = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/core/Axios.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/core/Axios.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     var buildURL = require_buildURL();
@@ -1158,9 +1158,9 @@ var require_Axios = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/cancel/CancelToken.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/cancel/CancelToken.js
 var require_CancelToken = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/cancel/CancelToken.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/cancel/CancelToken.js"(exports, module) {
     "use strict";
     var Cancel = require_Cancel();
     function CancelToken(executor) {
@@ -1240,9 +1240,9 @@ var require_CancelToken = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/spread.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/spread.js
 var require_spread = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/spread.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/spread.js"(exports, module) {
     "use strict";
     module.exports = function spread(callback) {
       return function wrap(arr) {
@@ -1252,9 +1252,9 @@ var require_spread = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/isAxiosError.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/isAxiosError.js
 var require_isAxiosError = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/helpers/isAxiosError.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/helpers/isAxiosError.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     module.exports = function isAxiosError(payload) {
@@ -1263,9 +1263,9 @@ var require_isAxiosError = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/axios.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/axios.js
 var require_axios = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/lib/axios.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/lib/axios.js"(exports, module) {
     "use strict";
     var utils = require_utils();
     var bind = require_bind();
@@ -1298,9 +1298,9 @@ var require_axios = __commonJS({
   }
 });
 
-// ../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/index.js
+// C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/index.js
 var require_axios2 = __commonJS({
-  "../../../myProject/quick-campus-h5/quick-campus-h5/node_modules/axios/index.js"(exports, module) {
+  "C:/Users/liu/Desktop/大学圈/quick-campus-h5/node_modules/axios/index.js"(exports, module) {
     module.exports = require_axios();
   }
 });

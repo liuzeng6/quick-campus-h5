@@ -2,7 +2,8 @@
 const common_vendor = require("../../common/vendor.js");
 const utlis_time = require("../../utlis/time.js");
 const utlis_request = require("../../utlis/request.js");
-const stores_appData = require("../../stores/appData.js");
+require("../../stores/index.js");
+const stores_modules_config = require("../../stores/modules/config.js");
 if (!Array) {
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
   const _component_botton = common_vendor.resolveComponent("botton");
@@ -20,6 +21,7 @@ const PictureList = () => "../../components/pictureList/index.js";
 const _sfc_main = {
   __name: "index",
   setup(__props) {
+    const appData = stores_modules_config.useAppDataStore().config;
     const like = async (flag) => {
       let tid = topicsData.value.id;
       if (flag) {
@@ -59,7 +61,6 @@ const _sfc_main = {
     };
     const mode = common_vendor.ref(1);
     const images = common_vendor.ref([]);
-    const spread = common_vendor.ref([]);
     let id = 0;
     const navigator = (url, type) => {
       if (type) {
@@ -89,7 +90,6 @@ const _sfc_main = {
       let { data: { data } } = await utlis_request.instance(`/community/topics/${id}`);
       topicsData.value = data;
       images.value = data.images;
-      spread.value = stores_appData.appData.spread;
     };
     common_vendor.onLoad(async (options) => {
       try {
@@ -105,8 +105,9 @@ const _sfc_main = {
       getCommentData(1);
     });
     common_vendor.onPullDownRefresh(async () => {
-      loadData();
-      getCommentData(1);
+      await loadData();
+      await getCommentData(1);
+      common_vendor.index.stopPullDownRefresh();
     });
     let content = common_vendor.ref("");
     const topicsData = common_vendor.ref({
@@ -270,7 +271,7 @@ const _sfc_main = {
         k: common_vendor.p({
           images: images.value
         }),
-        l: common_vendor.t((_a = common_vendor.unref(stores_appData.appData).tags.find((item) => item.id == topicsData.value.tag_id)) == null ? void 0 : _a.tag),
+        l: common_vendor.t((_a = common_vendor.unref(appData).tags.find((item) => item.id == topicsData.value.tag_id)) == null ? void 0 : _a.tag),
         m: common_vendor.p({
           type: "undo",
           color: "#999999",
@@ -294,7 +295,7 @@ const _sfc_main = {
         s: common_vendor.t(topicsData.value.is_collect ? "取消" : "收藏"),
         t: common_vendor.o(($event) => collect(topicsData.value.is_collect)),
         v: common_vendor.n(topicsData.value.is_collect ? "collect active" : "collect"),
-        w: common_vendor.f(spread.value, (item, k0, i0) => {
+        w: common_vendor.f(common_vendor.unref(appData).spread, (item, k0, i0) => {
           return {
             a: item.image,
             b: common_vendor.o(($event) => skip(item.url))
@@ -308,7 +309,7 @@ const _sfc_main = {
         A: common_vendor.o(open),
         B: common_vendor.p({
           cList: cList.value,
-          tid: topicsData.value.id
+          uid: topicsData.value.uid
         }),
         C: topicsData.value.user.avatar,
         D: common_vendor.o(($event) => open({

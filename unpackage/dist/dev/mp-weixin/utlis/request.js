@@ -1,6 +1,6 @@
 "use strict";
 const common_vendor = require("../common/vendor.js");
-const stores_appData = require("../stores/appData.js");
+const utlis_config = require("./config.js");
 const baseURL = "http://localhost:3000";
 const instance = common_vendor.axios.create({
   baseURL,
@@ -8,11 +8,11 @@ const instance = common_vendor.axios.create({
   adapter: common_vendor.mpAdapter
 });
 instance.interceptors.request.use(function(config) {
-  if (stores_appData.appData.openid) {
-    config.headers.Authorization = stores_appData.appData.openid;
+  if (utlis_config.appConfig.openid) {
+    config.headers.Authorization = utlis_config.appConfig.openid;
   } else {
     console.log("没有值");
-    if (!stores_appData.appData.auth) {
+    if (!utlis_config.appConfig.auth) {
       config.headers.Authorization = "OoPvL6mSXGJ7crsbcYCPBTDI91dK86IN";
     }
   }

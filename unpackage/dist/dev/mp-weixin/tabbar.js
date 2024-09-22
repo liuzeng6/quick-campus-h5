@@ -1,7 +1,6 @@
 "use strict";
 const common_vendor = require("./common/vendor.js");
-require("./utlis/request.js");
-const stores_appData = require("./stores/appData.js");
+const api_index = require("./api/index.js");
 if (!Array) {
   const _component_uni_icon = common_vendor.resolveComponent("uni-icon");
   const _easycom_up_popup2 = common_vendor.resolveComponent("up-popup");
@@ -38,7 +37,12 @@ const _sfc_main = {
       });
     };
     const getTagList = async () => {
-      tags.value = stores_appData.appData.tags.filter((el) => el.enable);
+      try {
+        const { data: { data: res } } = await api_index.getTags();
+        tags.value = res.filter((el) => el.enable);
+      } catch (e) {
+        console.log("错误", e);
+      }
     };
     const checkedBar = (index) => {
       if (index === 2) {

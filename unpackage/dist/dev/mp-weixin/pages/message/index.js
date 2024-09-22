@@ -2,13 +2,15 @@
 const common_vendor = require("../../common/vendor.js");
 if (!Array) {
   const _easycom_uni_icons2 = common_vendor.resolveComponent("uni-icons");
+  const _easycom_up_empty2 = common_vendor.resolveComponent("up-empty");
   const _easycom_tabbar2 = common_vendor.resolveComponent("tabbar");
-  (_easycom_uni_icons2 + _easycom_tabbar2)();
+  (_easycom_uni_icons2 + _easycom_up_empty2 + _easycom_tabbar2)();
 }
 const _easycom_uni_icons = () => "../../uni_modules/uni-icons/components/uni-icons/uni-icons.js";
+const _easycom_up_empty = () => "../../uni_modules/uview-plus/components/u-empty/u-empty.js";
 const _easycom_tabbar = () => "../../components/tabbar/tabbar2.js";
 if (!Math) {
-  (_easycom_uni_icons + _easycom_tabbar)();
+  (_easycom_uni_icons + _easycom_up_empty + _easycom_tabbar)();
 }
 const _sfc_main = {
   __name: "index",
@@ -48,6 +50,10 @@ const _sfc_main = {
         }),
         f: common_vendor.o(toCommented),
         g: common_vendor.p({
+          mode: "comment",
+          icon: "http://cdn.uviewui.com/uview/empty/comment.png"
+        }),
+        h: common_vendor.p({
           checkedIndex: "3"
         })
       };

@@ -6,19 +6,19 @@
           </view>
           <view class="items">
                <view class="item" v-for="(el, index) in list">
-                    hhaha
+                    {{ el.title }}
                </view>
           </view>
      </scroll-view>
 </template>
 <script setup>
-let list = [
-     {
-          title: "哈哈哈"
-     }, {
-          title: "哈哈哈"
-     }
-];
+import { onMounted, ref } from "vue"
+import { getTopics } from "../../api";
+let list = ref([]);
+onMounted(async () => {
+     let { data: { data: res } } = await getTopics();
+     list.value = res;
+})
 
 </script>
 <style scoped lang="scss">

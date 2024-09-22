@@ -9,7 +9,7 @@
                     <view>
                         {{ item.user.nickname }}
                     </view>
-                    <view class="sign" v-show="item.uid == item.user.id">
+                    <view class="sign" v-show="item.uid == uid">
                         楼主
                     </view>
                 </view>
@@ -42,7 +42,7 @@
                             <view>
                               {{ el.user.nickname }} <text v-show="el.ruser"> > {{ el.ruser }}</text> 
                             </view>
-                            <view class="sign" v-show="item.uid == el.user.id">
+                            <view class="sign" v-show="uid == el.user.id">
                                 楼主
                             </view>
                         </view>
@@ -78,16 +78,16 @@
 <script setup>
 
 import { useUserStore } from '../../stores';
-import appData from '../../stores/appData';
+// import appData from '../../stores/appData';
+import { useAppDataStore } from "@/stores";
+const appData = useAppDataStore().config
 import { timeAgo } from '../../utlis/time';
 import { ref, onMounted } from "vue";
 const props = defineProps({
     "cList": Array,
-    "tid": Number
+    "uid": Number
 });
 const emits = defineEmits(['open']);
-let userStore = useUserStore();
-let uid = userStore.userInfo.value.id || -1;
 
 const handleCLick = () => {
     console.log("a");
